@@ -25,7 +25,7 @@ BuildRequires:	ocaml
 BuildRequires:	perl-devel >= 1:5.6.1
 BuildRequires:	php-devel >= 4.1.0
 BuildRequires:	php-cgi
-BuildRequires:	python-devel >= 2.3.2
+BuildRequires:	python-devel >= 1:2.3.2
 BuildRequires:	ruby >= 1:1.6.3
 BuildRequires:	tcl-devel >= 8.3.3
 Obsoletes:	swig-ocaml
