@@ -1,22 +1,11 @@
---- swig/configure.in.old	2003-09-09 23:31:54.918868776 +0200
-+++ swig/configure.in	2003-09-09 23:12:40.000000000 +0200
-@@ -889,7 +889,7 @@
- AC_MSG_CHECKING(for PHP4 header files)
- dirs="/usr/include/php /usr/local/include/php /usr/local/apache/php"
- for i in $dirs; do
--	if test -r $i/php_config.h -o -r $i/php_version.h; then
-+	if test -r $i/main/php_config.h -o -r $i/main/php_version.h; then
- 		AC_MSG_RESULT($i)
- 		PHP4EXT="$i"
- 		PHP4INC="-I$PHP4EXT -I$PHP4EXT/Zend -I$PHP4EXT/main -I$PHP4EXT/TSRM"
---- swig/Runtime/Makefile.in.orig	2003-09-09 23:37:40.549324960 +0200
-+++ swig/Runtime/Makefile.in	2003-09-09 23:37:50.220854664 +0200
-@@ -18,7 +18,7 @@
- LIBS        = libswigpl$(RELEASESUFFIX).la libswigpy$(RELEASESUFFIX).la \
- 	      libswigtcl8$(RELEASESUFFIX).la libswigrb$(RELEASESUFFIX).la \
- 	      libswigguile$(RELEASESUFFIX).la libswigocaml$(RELEASESUFFIX).la \
--              libswigchicken$(RELEASESUFFIX).la
-+              libswigchicken$(RELEASESUFFIX).la libswigphp4$(RELEASESUFFIX).la
- LIB_DIR     = $(exec_prefix)/lib
- 
- MKINSTDIRS  = $(top_srcdir)/Tools/config/mkinstalldirs
+--- SWIG-1.3.20/configure.in.orig	2003-12-09 19:53:52.000000000 +0100
++++ SWIG-1.3.20/configure.in	2003-12-19 00:45:55.436701752 +0100
+@@ -1053,7 +1053,7 @@
+ 	dirs="/usr/include/php /usr/local/include/php /usr/include/php4 /usr/local/include/php4 /usr/local/apache/php"
+ 	for i in $dirs; do
+ 		echo $i
+-		if test -r $i/php_config.h -o -r $i/php_version.h; then
++		if test -r $i/main/php_config.h -o -r $i/main/php_version.h; then
+ 			AC_MSG_RESULT($i)
+ 			PHP4EXT="$i"
+ 			PHP4INC="-I$PHP4EXT -I$PHP4EXT/Zend -I$PHP4EXT/main -I$PHP4EXT/TSRM"

@@ -37,12 +37,12 @@ diff -uNr SWIG-1.3.19.orig/Source/Modules/php4.cxx SWIG-1.3.19/Source/Modules/ph
        create_command(iname, Char(Swig_name_wrapper(iname)));
        Printv(f->def, "ZEND_NAMED_FUNCTION(" , Swig_name_wrapper(iname), ") {\n", NIL);
 @@ -1661,10 +1665,10 @@
-       while(base && Getattr(base,"feature:ignore")) base = Nextitem(baselist);
+       while(base.item && Getattr(base.item,"feature:ignore")) base = Next(base);
  
-       if (base) {
+       if (base.item) {
 -        Printf(s_oinit,"if (! (ptr_ce_swig_%s=zend_register_internal_class_ex(&ce_swig_%s,&ce_swig_%s,NULL))) zend_error(E_ERROR,\"Error registering wrapper for class %s\");\n",
 +        Printf(s_oinit,"if (! (ptr_ce_swig_%s=zend_register_internal_class_ex(&ce_swig_%s,&ce_swig_%s,NULL TSRMLS_CC))) zend_error(E_ERROR,\"Error registering wrapper for class %s\");\n",
-           shadow_classname,shadow_classname,GetChar(base, "sym:name"), shadow_classname);
+           shadow_classname,shadow_classname,GetChar(base.item, "sym:name"), shadow_classname);
        } else {
 -        Printf(s_oinit,"if (! (ptr_ce_swig_%s=zend_register_internal_class_ex(&ce_swig_%s,NULL,NULL))) zend_error(E_ERROR,\"Error registering wrapper for class %s\");\n",
 +        Printf(s_oinit,"if (! (ptr_ce_swig_%s=zend_register_internal_class_ex(&ce_swig_%s,NULL,NULL TSRMLS_CC))) zend_error(E_ERROR,\"Error registering wrapper for class %s\");\n",
