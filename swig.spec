@@ -13,6 +13,7 @@ Patch1:		%{name}-php.patch
 Patch2:		%{name}-php-tsrm.patch
 Patch3:		%{name}-php-freearg.patch
 Patch4:		%{name}-php-vdecl.patch
+Patch5:		%{name}-python-lib64.patch
 URL:		http://www.swig.org/
 Icon:		swig.gif
 BuildRequires:	autoconf
@@ -139,6 +140,9 @@ Biblioteka SWIG: tcl.
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
+%if "%{_lib}" == "lib64"
+%patch5 -p1
+%endif
 
 %build
 %{__libtoolize}
