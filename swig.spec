@@ -18,7 +18,7 @@ BuildRequires:	php-devel >= 4.1.0
 BuildRequires:	python >= 2.2
 BuildRequires:	ruby >= 1.6.3
 BuildRequires:	tcl >= 8.3.3
-BuildRequires:	ocaml-devel
+BuildRequires:	ocaml
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -130,6 +130,7 @@ Biblioteka SWIG: ocaml.
 oldpwd=$PWD
 for i in . Source/DOH Tools Examples/GIFPlot; do
   cd $i
+  %{__libtoolize}
   %{__aclocal}
   %{__autoconf}
   cd $oldpwd
