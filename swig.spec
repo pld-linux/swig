@@ -164,29 +164,29 @@ rm -rf $RPM_BUILD_ROOT
 %files guile
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/lib*guile.so
-%attr(755,root,root) %{_libdir}/lib*guile.la
+%{_libdir}/lib*guile.la
 
 %files perl
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/lib*pl.so
-%attr(755,root,root) %{_libdir}/lib*pl.la
+%{_libdir}/lib*pl.la
 
 %files python
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/lib*py.so
-%attr(755,root,root) %{_libdir}/lib*py.la
+%{_libdir}/lib*py.la
 
 %files ruby
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/lib*rb.so
-%attr(755,root,root) %{_libdir}/lib*rb.la
+%{_libdir}/lib*rb.la
 
 %files tcl
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/lib*tcl*.so
-%attr(755,root,root) %{_libdir}/lib*tcl*.la
+%{_libdir}/lib*tcl*.la
 
 %files ocaml
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/lib*ocaml*.so
-%attr(755,root,root) %{_libdir}/lib*ocaml*.la
+%{_libdir}/lib*ocaml*.la
