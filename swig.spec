@@ -2,12 +2,12 @@ Summary:	Interface generator for Perl, Tcl, Guile and Python
 Summary(pl):	Generator interfejsu do Perl'a, Tcl'a, Guile'a i Python'a
 Name:		swig
 Version:	1.3.11
-Release:	1
+Release:	2
 License:	distributable
 Group:		Development/Languages
 Source0:	http://prdownloads.sourceforge.net/swig/%{name}-%{version}.tar.gz
 Patch0:		%{name}-configure.patch
-URL:		http://www.swig.org
+URL:		http://www.swig.org/
 BuildRequires:	autoconf
 BuildRequires:	guile-devel
 BuildRequires:	libstdc++-devel
@@ -49,6 +49,61 @@ pomys³y. Zbyt wielu ich jest, aby dziêkowaæ ka¿demu z nich osobno, ale
 bez ich wsparcia, SWIG nie by³by anie tak pote¿nym na¿edziem, ani tak
 fajnym w u¿yciu jak jest teraz. Wiekie dziêki!
 
+%package guile
+Summary:	SWIG library: guile
+Summary(pl):	Biblioteka SWIG: guile
+Group:		Libraries
+
+%description guile
+SWIG library: guile
+
+%description guile -l pl
+Biblioteka SWIG: guile
+
+%package perl
+Summary:	SWIG library: Perl
+Summary(pl):	Biblioteka SWIG: Perl
+Group:		Libraries
+
+%description perl
+SWIG library: perl
+
+%description perl -l pl
+Biblioteka SWIG: perl
+
+%package python
+Summary:	SWIG library: python
+Summary(pl):	Biblioteka SWIG: python
+Group:		Libraries
+
+%description python
+SWIG library: python
+
+%description python -l pl
+Biblioteka SWIG: python
+
+%package ruby
+Summary:	SWIG library: ruby
+Summary(pl):	Biblioteka SWIG: ruby
+Group:		Libraries
+
+%description ruby
+SWIG library: ruby
+
+%description ruby -l pl
+Biblioteka SWIG: ruby
+
+%package tcl
+Summary:	SWIG library: tcl
+Summary(pl):	Biblioteka SWIG: tcl
+Group:		Libraries
+
+%description tcl
+SWIG library: tcl
+
+%description tcl -l pl
+Biblioteka SWIG: tcl
+
 %prep
 %setup -q -n SWIG-%{version}
 %patch0 -p1
@@ -63,6 +118,7 @@ for i in . Source/DOH Tools Examples/GIFPlot; do
 done
 %configure
 %{__make} OPT="%{rpmcflags}"
+
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -86,6 +142,29 @@ rm -rf $RPM_BUILD_ROOT
 %doc Doc *.gz
 %{_libdir}/%{name}*
 %attr(755,root,root) %{_bindir}/swig
-%attr(755,root,root) %{_libdir}/lib*.so
-%attr(755,root,root) %{_libdir}/lib*.la
 %{_examplesdir}/%{name}-%{version}
+
+%files guile
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/lib*guile.so
+%attr(755,root,root) %{_libdir}/lib*guile.la
+
+%files perl
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/lib*pl.so
+%attr(755,root,root) %{_libdir}/lib*pl.la
+
+%files python
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/lib*py.so
+%attr(755,root,root) %{_libdir}/lib*py.la
+
+%files ruby
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/lib*rb.so
+%attr(755,root,root) %{_libdir}/lib*rb.la
+
+%files tcl
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/lib*tcl*.so
+%attr(755,root,root) %{_libdir}/lib*tcl*.la
