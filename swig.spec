@@ -47,7 +47,7 @@ find Examples/ -type l -exec rm -v {} \;
 %patch -p1
 
 %build
-./configure --prefix=/usr
+%configure
 make OPT="$RPM_OPT_FLAGS"
 make test
 
