@@ -2,14 +2,15 @@ Summary:	Interface generator for Perl, Tcl, Guile and Python
 Summary(pl):	Generator interfejsów do Perla, Tcl-a, Guile'a i Pythona
 Summary(pt_BR): Gerador de Interfaces e "Wrappers" Simplificado (SWIG)
 Name:		swig
-Version:	1.3.15
+Version:	1.3.17
 Release:	1
 License:	distributable
 Group:		Development/Languages
-Source0:	http://prdownloads.sourceforge.net/swig/%{name}-%{version}.tar.gz
+Source0:	ftp://ftp.sourceforge.net/pub/sourceforge/swig/%{name}-%{version}.tar.gz
 URL:		http://www.swig.org/
 Icon:		swig.gif
 BuildRequires:	autoconf
+BuildRequires:	automake
 BuildRequires:	guile-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	perl-devel >= 5.6.1
@@ -129,13 +130,13 @@ Biblioteka SWIG: ocaml.
 oldpwd=$PWD
 for i in . Source/DOH Tools Examples/GIFPlot; do
   cd $i
-  aclocal
-  autoconf
+  %{__aclocal}
+  %{__autoconf}
   cd $oldpwd
 done
 %configure
-%{__make} OPT="%{rpmcflags}"
 
+%{__make} OPT="%{rpmcflags}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -186,5 +187,5 @@ rm -rf $RPM_BUILD_ROOT
 
 %files ocaml
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/lib*ocaml*.so
+%attr(755,root,root) %{_libdir}/lib*ocaml*.so*
 %{_libdir}/lib*ocaml*.la
