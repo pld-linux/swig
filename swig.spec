@@ -116,10 +116,10 @@ Summary:	SWIG library: ocaml
 Summary(pl):	Biblioteka SWIG: ocaml
 Group:		Libraries
 
-%description tcl
+%description ocaml
 SWIG library: ocaml.
 
-%description tcl -l pl
+%description ocaml -l pl
 Biblioteka SWIG: ocaml.
 
 %prep
