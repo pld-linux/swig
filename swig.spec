@@ -62,7 +62,7 @@ osobno, ale bez ich wsparcia SWIG nie by³by ani tak potê¿nym
 narzêdziem, ani tak fajnym w u¿yciu jak jest teraz. Wiekie dziêki!
 
 %description -l pt_BR
-O SWIG gera interfaces para perl, python e tcl a partir de uma arquivo
+O SWIG gera interfaces para perl, python e Tcl a partir de uma arquivo
 com uma interface de descrição que consiste de uma combinação de C/C++
 e diretivas especiais. Permite que linguagens tipo script usem C/C++
 com um mínimo de esforço.
