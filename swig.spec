@@ -6,7 +6,7 @@ Version:	1.3.17
 Release:	1
 License:	distributable
 Group:		Development/Languages
-Source0:	ftp://ftp.sourceforge.net/pub/sourceforge/swig/%{name}-%{version}.tar.gz
+Source0:	http://dl.sourceforge.net/swig/%{name}-%{version}.tar.gz
 URL:		http://www.swig.org/
 Icon:		swig.gif
 BuildRequires:	autoconf
