@@ -1,9 +1,18 @@
+
+# Conditional build:
+%bcond_without	guile	# disable guile support
+%bcond_without	ocaml	# disable ocaml support
+%bcond_without	perl	# disable perl support
+%bcond_without	php		# disable php support
+%bcond_without	ruby	# disable ruby support
+%bcond_without	tcl		# disable tcl support
+
 Summary:	Interface generator for Perl, Tcl, Guile and Python
 Summary(pl):	Generator interfejsów do Perla, Tcl-a, Guile'a i Pythona
 Summary(pt_BR):	Gerador de Interfaces e "Wrappers" Simplificado (SWIG)
 Name:		swig
 Version:	1.3.21
-Release:	2
+Release:	3
 License:	distributable
 Group:		Development/Languages
 Source0:	http://dl.sourceforge.net/swig/%{name}-%{version}.tar.gz
@@ -18,16 +27,16 @@ URL:		http://www.swig.org/
 Icon:		swig.gif
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	guile-devel
+%{?with_guile:BuildRequires:	guile-devel}
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool
-BuildRequires:	ocaml
-BuildRequires:	perl-devel >= 1:5.6.1
-BuildRequires:	php-devel >= 4.1.0
-BuildRequires:	php-cgi
+%{?with_ocaml:BuildRequires:	ocaml}
+%{?with_perl:BuildRequires:	perl-devel >= 1:5.6.1}
+%{?with_php:BuildRequires:	php-devel >= 4.1.0}
+%{?with_php:BuildRequires:	php-cgi}
 BuildRequires:	python-devel >= 1:2.3.2
-BuildRequires:	ruby >= 1:1.6.3
-BuildRequires:	tcl-devel >= 8.3.3
+%{?with_ruby:BuildRequires:	ruby >= 1:1.6.3}
+%{?with_tcl:BuildRequires:	tcl-devel >= 8.3.3}
 Obsoletes:	swig-ocaml
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -195,23 +204,29 @@ rm -rf $RPM_BUILD_ROOT
 %{_aclocaldir}/swig.m4
 %{_examplesdir}/%{name}-%{version}
 
+%if %{with guile}
 %files guile
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libswigguile*.so.*.*.*
 %attr(755,root,root) %{_libdir}/libswigguile*.so
 %{_libdir}/libswigguile*.la
+%endif
 
+%if %{with perl}
 %files perl
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libswigpl.so.*.*.*
 %attr(755,root,root) %{_libdir}/libswigpl.so
 %{_libdir}/libswigpl.la
+%endif
 
+%if %{with php}
 %files php
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libswigphp4.so.*.*.*
 %attr(755,root,root) %{_libdir}/libswigphp4.so
 %{_libdir}/libswigphp4.la
+%endif
 
 %files python
 %defattr(644,root,root,755)
@@ -219,14 +234,18 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libswigpy.so
 %{_libdir}/libswigpy.la
 
+%if %{with ruby}
 %files ruby
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libswigrb.so.*.*.*
 %attr(755,root,root) %{_libdir}/libswigrb.so
 %{_libdir}/libswigrb.la
+%endif
 
+%if %{with tcl}
 %files tcl
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libswigtcl*.so.*.*.*
 %attr(755,root,root) %{_libdir}/libswigtcl*.so
 %{_libdir}/libswigtcl*.la
+%endif
