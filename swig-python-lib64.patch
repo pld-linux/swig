@@ -1,0 +1,15 @@
+diff -durN SWIG-1.3.20.orig/configure.in SWIG-1.3.20/configure.in
+--- SWIG-1.3.20.orig/configure.in	2004-01-06 18:01:56.000000000 +0100
++++ SWIG-1.3.20/configure.in	2004-01-06 18:05:31.509874169 +0100
+@@ -606,8 +606,8 @@
+     AC_MSG_CHECKING(for Python library)
+     dirs="$PYVERSION/config $PYVERSION/lib python/lib"
+     for i in $dirs; do
+-        if test -d $PYEPREFIX/lib/$i; then
+-           PYLIB="$PYEPREFIX/lib/$i"
++        if test -d $PYEPREFIX/lib64/$i; then
++           PYLIB="$PYEPREFIX/lib64/$i"
+            break
+         fi
+     done
+
