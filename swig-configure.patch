@@ -1,8 +1,21 @@
---- SWIG1.3a5/Source/DOH/configure.in~	Wed Jun  7 00:28:42 2000
-+++ SWIG1.3a5/Source/DOH/configure.in	Fri Dec 14 01:05:56 2001
-@@ -41,4 +41,4 @@
- AC_HEADER_STDC
- dnl Checks for library functions.
- 
--AC_OUTPUT(Makefile Doh/Makefile Test/Makefile)
-+AC_OUTPUT(Makefile Doh/Makefile)
+diff -urN SWIG-1.3.11.org/configure.in SWIG-1.3.11/configure.in
+--- SWIG-1.3.11.org/configure.in	Fri Apr 12 01:20:07 2002
++++ SWIG-1.3.11/configure.in	Fri Apr 12 01:22:52 2002
+@@ -769,7 +769,7 @@
+ 		RUBYLIB=none
+ 		for i in $dirs; do
+                         # cygwin produces "librubys.a" instead of "libruby.a"
+-			if ((test -r $i/libruby.a;) || (test -r $i/librubys.a;)) then
++			if ( (test -r $i/libruby.a) || (test -r $i/librubys.a) ) then
+ 				AC_MSG_RESULT($i)
+ 				RUBYLIB="$i"
+ 				break;
+@@ -822,7 +822,7 @@
+ AC_MSG_CHECKING(for PHP4 header files)
+ dirs="/usr/include/php /usr/local/include/php /usr/local/apache/php"
+ for i in $dirs; do
+-	if test -r $i/php_config.h; then
++	if test -r $i/main/php_config.h; then
+ 		AC_MSG_RESULT($i)
+ 		PHP4EXT="$i"
+ 		PHP4INC="-I$PHP4EXT -I$PHP4EXT/Zend -I$PHP4EXT/main -I$PHP4EXT/TSRM"
