@@ -5,8 +5,6 @@ Version:	1.3a5
 Release:	0.2
 License:	distributable
 Group:		Development/Languages
-Group(de):	Entwicklung/Sprachen
-Group(pl):	Programowanie/Jêzyki
 Source0:	http://prdownloads.sourceforge.net/swig/%{name}%{version}.tar.gz
 Patch0:		%{name}1.1p2-fixed-paths.patch
 Patch1:		%{name}-python.patch
