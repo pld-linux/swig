@@ -1,14 +1,18 @@
 Summary:	Interface generator for Perl, Tcl, Guile and Python
 Summary(pl):	Generator interfejsu do Perl'a, Tcl'a, Guile'a i Python'a
 Name:		swig
-Version:	1.1p5
-Release:	1
+Version:	1.3a5
+Release:	0.1
 Copyright:	distributable
 Group:		Development/Languages
 Group(de):	Entwicklung/Sprachen
 Group(pl):	Programowanie/Jêzyki
-Source0:	%{name}%{version}.tar.gz
-Patch0:		%{name}1.1p2-fixed-paths.patch
+Source0:	http://prdownloads.sourceforge.net/swig/swig%{version}.tar.gz
+BuildRequires:	python >= 2.1
+BuildRequires:	ruby >= 1.6.3
+BuildRequires:	perl-devel >= 5.6.1
+BuildRequires:	tcl >= 8.3.3
+URL:		http://www.swig.org/
 Icon:		swig.gif
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -43,14 +47,12 @@ bez ich wsparcia, SWIG nie by³by anie tak pote¿nym na¿edziem, ani tak
 fajnym w u¿yciu jak jest teraz. Wiekie dziêki!
 
 %prep
-%setup -q -n SWIG1.1p5
+%setup -q -n SWIG%{version}
 find Examples/ -type l -exec rm -v {} \;
-%patch -p1
 
 %build
-%configure
+%configure2_13
 %{__make} OPT="%{rpmcflags}"
-%{__make} test
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -58,12 +60,11 @@ install -d $RPM_BUILD_ROOT/{%{_libdir}/swig_lib,%{_mandir}/man1,%{_examplesdir}/
 
 %{__make} install \
 	prefix=$RPM_BUILD_ROOT/%{_prefix} \
-	exec_prefix=$RPM_BUILD_ROOT/%{_prefix} \
-	MAN_DIR=$RPM_BUILD_ROOT/%{_mandir}/man1
+	BIN_DIR=$RPM_BUILD_ROOT/%{_bindir} 
 
 cp -a Examples/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
-gzip -9nf CHANGES NEW README TROUBLESHOOTING ToDo
+gzip -9nf CHANGES NEW README ANNOUNCE TODO LICENSE
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -71,10 +72,6 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc Doc *.gz
-%dir %{_libdir}/swig_lib
-%{_libdir}/swig_lib/*
-%{_libdir}/libswig.a
-%{_includedir}/swig.h
+%{_libdir}/swig*
 %attr(755,root,root) %{_bindir}/swig
-%{_mandir}/man1/*
 %{_examplesdir}/%{name}-%{version}
