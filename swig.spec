@@ -52,27 +52,28 @@ make test
 
 %install
 rm -rf $RPM_BUILD_ROOT
-
 install -d $RPM_BUILD_ROOT/{%{_libdir}/swig_lib,%{_mandir}/man1,%{_prefix}/src/examples/swig}
-make install prefix=$RPM_BUILD_ROOT/%{_prefix} \
+
+make install \
+	prefix=$RPM_BUILD_ROOT/%{_prefix} \
 	exec_prefix=$RPM_BUILD_ROOT/%{_prefix} \
 	MAN_DIR=$RPM_BUILD_ROOT/%{_mandir}/man1
 
 cp -a Examples/* $RPM_BUILD_ROOT/%{_prefix}/src/examples/swig/
 
 gzip -9nf CHANGES NEW README TROUBLESHOOTING ToDo \
-	$RPM_BUILD_ROOT/%{_mandir}/man1/swig.1
+	$RPM_BUILD_ROOT/%{_mandir}/man1/*
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(-,root,root,755)
-%doc Doc {CHANGES,NEW,README,TROUBLESHOOTING,ToDo}.gz
+%doc Doc *.gz
 %dir %{_libdir}/swig_lib
 %{_libdir}/swig_lib/*
 %{_libdir}/libswig.a
 %{_includedir}/swig.h
 %attr(755,root,root) %{_bindir}/swig
-%{_mandir}/man1/swig.1.gz
+%{_mandir}/man1/*
 %{_prefix}/src/examples/swig
