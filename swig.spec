@@ -1,9 +1,12 @@
+
+%bcond_with php
+
 Summary:	Interface generator for Perl, Tcl, Guile and Python
 Summary(pl):	Generator interfejsów do Perla, Tcl-a, Guile'a i Pythona
 Summary(pt_BR):	Gerador de Interfaces e "Wrappers" Simplificado (SWIG)
 Name:		swig
 Version:	1.3.19
-Release:	2
+Release:	3
 License:	distributable
 Group:		Development/Languages
 Source0:	http://dl.sourceforge.net/swig/%{name}-%{version}.tar.gz
@@ -18,9 +21,11 @@ BuildRequires:	guile-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool
 BuildRequires:	perl-devel >= 5.6.1
+%if %{with php}
 BuildRequires:	php-devel >= 4.1.0
+BuildRequires:	php-cgi
+%endif
 BuildRequires:	python >= 2.2
-BuildRequires:	php-devel
 BuildRequires:	ruby >= 1.6.3
 BuildRequires:	tcl-devel >= 8.3.3
 BuildRequires:	ocaml
@@ -84,6 +89,7 @@ SWIG library: perl.
 %description perl -l pl
 Biblioteka SWIG: perl.
 
+%if %{with php}
 %package php
 Summary:	SWIG library: php
 Summary(pl):	Biblioteka SWIG: php
@@ -94,6 +100,7 @@ SWIG library: php.
 
 %description php -l pl
 Biblioteka SWIG: php.
+%endif
 
 %package python
 Summary:	SWIG library: python
@@ -189,10 +196,12 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/lib*pl.so
 %{_libdir}/lib*pl.la
 
+%if %{with php}
 %files php
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/lib*php4.so
 %{_libdir}/lib*php4.la
+%endif
 
 %files python
 %defattr(644,root,root,755)
