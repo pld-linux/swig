@@ -4,7 +4,7 @@ Summary(pl):	Generator interfejsów do Perla, Tcl-a, Guile'a i Pythona
 Summary(pt_BR):	Gerador de Interfaces e "Wrappers" Simplificado (SWIG)
 Name:		swig
 Version:	1.3.19
-Release:	7
+Release:	8
 License:	distributable
 Group:		Development/Languages
 Source0:	http://dl.sourceforge.net/swig/%{name}-%{version}.tar.gz
@@ -14,6 +14,8 @@ Patch1:		%{name}-php.patch
 Patch2:		%{name}-php-tsrm.patch
 Patch3:		%{name}-php-freearg.patch
 Patch4:		%{name}-php-vdecl.patch
+Patch5:		%{name}-python-lib64.patch
+Patch6:		%{name}-ocaml-includes.patch
 URL:		http://www.swig.org/
 Icon:		swig.gif
 BuildRequires:	autoconf
@@ -150,6 +152,10 @@ Biblioteka SWIG: ocaml.
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
+%if "%{_lib}" == "lib64"
+%patch5 -p1
+%endif
+%patch6 -p1
 
 %build
 oldpwd=$PWD
@@ -162,13 +168,14 @@ for i in . Tools; do
 done
 %configure
 
-%{__make} OPT="%{rpmcflags}"
+%{__make} OPT="%{rpmcflags}" LIB_DIR="%{_libdir}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_mandir}/man1,%{_examplesdir}/%{name}-%{version}}
 
 %{__make} install \
+	LIB_DIR="%{_libdir}" \
 	DESTDIR=$RPM_BUILD_ROOT
 
 cp -a Examples/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
