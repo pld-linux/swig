@@ -146,8 +146,6 @@ install -d $RPM_BUILD_ROOT{%{_mandir}/man1,%{_examplesdir}/%{name}-%{version}}
 
 cp -a Examples/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
-gzip -9nf CHANGES NEW README ANNOUNCE TODO LICENSE
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -156,7 +154,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc Doc *.gz
+%doc Doc CHANGES NEW README ANNOUNCE TODO LICENSE
 %{_libdir}/%{name}*
 %attr(755,root,root) %{_bindir}/swig
 %{_examplesdir}/%{name}-%{version}
