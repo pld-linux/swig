@@ -1,5 +1,5 @@
 Summary:	Interface generator for Perl, Tcl, Guile and Python
-Summary(pl):	Generator interfejsu do Perl'a, Tcl'a, Guile'a i Python'a
+Summary(pl):	Generator interfejsów do Perla, Tcl-a, Guile'a i Pythona
 Name:		swig
 Version:	1.3.11
 Release:	2
@@ -8,6 +8,7 @@ Group:		Development/Languages
 Source0:	http://prdownloads.sourceforge.net/swig/%{name}-%{version}.tar.gz
 Patch0:		%{name}-configure.patch
 URL:		http://www.swig.org/
+Icon:		swig.gif
 BuildRequires:	autoconf
 BuildRequires:	guile-devel
 BuildRequires:	libstdc++-devel
@@ -16,7 +17,6 @@ BuildRequires:	php-devel >= 4.1.0
 BuildRequires:	python >= 2.2
 BuildRequires:	ruby >= 1.6.3
 BuildRequires:	tcl >= 8.3.3
-Icon:		swig.gif
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -35,19 +35,19 @@ individually, but without this support, SWIG would be not be nearly as
 powerful or fun to use as it is now. Many thanks!
 
 %description -l pl
-SWIG jesk kompilatorem, który próbuje ulatwic integrowanie kodu
-napisanego w C, C++ lub Objective-C z jêzykami skryptowymitakimi jak
-Perl, Tcl i Python. Mówi±c najpro¶ciej, jesli dostarczysz mu zestaw
-zdeklarowanych w ANSI C/C++ funkcji, SWIG wygeneruje Ci interfejs
-pomiedzy C a Twoim ulubionym jêzykiem skryptowym. To tylko drobna
+SWIG jesk kompilatorem, który próbuje u³atwiæ integrowanie kodu
+napisanego w C, C++ lub Objective-C z jêzykami skryptowymi, takimi jak
+Perl, Tcl i Python. Mówi±c najpro¶ciej, je¶li dostarczysz mu zestaw
+zadeklarowanych w ANSI C/C++ funkcji, SWIG wygeneruje Ci interfejs
+pomiêdzy C a Twoim ulubionym jêzykiem skryptowym. To tylko drobna
 czê¶æ tego co SWIG potrafi robiæ, bardziej zaawansowane zastosowania
-to automatyczne generowanie dokumentacji, zarzadzanie bibliotekami i
+to automatyczne generowanie dokumentacji, zarz±dzanie bibliotekami i
 modu³ami i wiele innych.
 
-SWIG jest w ca³o¶ci dzi³em ludzi, którzy go u¿ywali i wprowadzali nowe
-pomys³y. Zbyt wielu ich jest, aby dziêkowaæ ka¿demu z nich osobno, ale
-bez ich wsparcia, SWIG nie by³by anie tak pote¿nym na¿edziem, ani tak
-fajnym w u¿yciu jak jest teraz. Wiekie dziêki!
+SWIG jest w ca³o¶ci dzie³em ludzi, którzy go u¿ywali i wprowadzali
+nowe pomys³y. Zbyt wielu ich jest, aby dziêkowaæ ka¿demu z nich
+osobno, ale bez ich wsparcia SWIG nie by³by ani tak potê¿nym
+narzêdziem, ani tak fajnym w u¿yciu jak jest teraz. Wiekie dziêki!
 
 %package guile
 Summary:	SWIG library: guile
@@ -55,10 +55,10 @@ Summary(pl):	Biblioteka SWIG: guile
 Group:		Libraries
 
 %description guile
-SWIG library: guile
+SWIG library: guile.
 
 %description guile -l pl
-Biblioteka SWIG: guile
+Biblioteka SWIG: guile.
 
 %package perl
 Summary:	SWIG library: Perl
@@ -66,10 +66,10 @@ Summary(pl):	Biblioteka SWIG: Perl
 Group:		Libraries
 
 %description perl
-SWIG library: perl
+SWIG library: perl.
 
 %description perl -l pl
-Biblioteka SWIG: perl
+Biblioteka SWIG: perl.
 
 %package python
 Summary:	SWIG library: python
@@ -77,10 +77,10 @@ Summary(pl):	Biblioteka SWIG: python
 Group:		Libraries
 
 %description python
-SWIG library: python
+SWIG library: python.
 
 %description python -l pl
-Biblioteka SWIG: python
+Biblioteka SWIG: python.
 
 %package ruby
 Summary:	SWIG library: ruby
@@ -88,10 +88,10 @@ Summary(pl):	Biblioteka SWIG: ruby
 Group:		Libraries
 
 %description ruby
-SWIG library: ruby
+SWIG library: ruby.
 
 %description ruby -l pl
-Biblioteka SWIG: ruby
+Biblioteka SWIG: ruby.
 
 %package tcl
 Summary:	SWIG library: tcl
@@ -99,10 +99,10 @@ Summary(pl):	Biblioteka SWIG: tcl
 Group:		Libraries
 
 %description tcl
-SWIG library: tcl
+SWIG library: tcl.
 
 %description tcl -l pl
-Biblioteka SWIG: tcl
+Biblioteka SWIG: tcl.
 
 %prep
 %setup -q -n SWIG-%{version}
@@ -122,7 +122,7 @@ done
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/{%{_mandir}/man1,%{_examplesdir}/%{name}-%{version}}
+install -d $RPM_BUILD_ROOT{%{_mandir}/man1,%{_examplesdir}/%{name}-%{version}}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
@@ -131,11 +131,11 @@ cp -a Examples/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 gzip -9nf CHANGES NEW README ANNOUNCE TODO LICENSE
 
-%post -p /sbin/ldconfig
-%postun -p /sbin/ldconfig
-
 %clean
 rm -rf $RPM_BUILD_ROOT
+
+%post	-p /sbin/ldconfig
+%postun	-p /sbin/ldconfig
 
 %files
 %defattr(644,root,root,755)
