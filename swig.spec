@@ -47,14 +47,14 @@ find Examples/ -type l -exec rm -v {} \;
 
 %build
 %configure
-make OPT="$RPM_OPT_FLAGS"
-make test
+%{__make} OPT="$RPM_OPT_FLAGS"
+%{__make} test
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT/{%{_libdir}/swig_lib,%{_mandir}/man1,%{_prefix}/src/examples/swig}
 
-make install \
+%{__make} install \
 	prefix=$RPM_BUILD_ROOT/%{_prefix} \
 	exec_prefix=$RPM_BUILD_ROOT/%{_prefix} \
 	MAN_DIR=$RPM_BUILD_ROOT/%{_mandir}/man1
