@@ -9,7 +9,7 @@ Group(pl):	Programowanie/Jêzyki
 Source0:	%{name}%{version}.tar.gz
 Patch:		swig1.1p2-fixed-paths.patch
 Icon:		swig.gif
-BuildRoot:	/tmp/%{name}-%{version}-root
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 SWIG is a compiler that attempts to make it easy to integrate C, C++,
@@ -25,7 +25,6 @@ SWIG is entirely the product of users who have used the system and
 suggested new idea.  There are far too many people to thank
 individually, but without this support, SWIG would be not be nearly as
 powerful or fun to use as it is now. Many thanks!
-
 
 %description -l pl
 SWIG jesk kompilatorem, który próbuje ulatwic integrowanie kodu napisanego
