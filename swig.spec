@@ -71,6 +71,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-,root,root,755)
 %doc Doc {CHANGES,NEW,README,TROUBLESHOOTING,ToDo}.gz
 %dir %{_libdir}/swig_lib
+%{_libdir}/swig_lib/*
 %{_libdir}/libswig.a
 %{_includedir}/swig.h
 %attr(755,root,root) %{_bindir}/swig
