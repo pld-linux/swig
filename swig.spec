@@ -62,8 +62,8 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc Doc Examples CHANGES Copyright INSTALL NEW README TROUBLESHOOTING ToDo
-%dir /usr/lib/swig_lib
-/usr/lib/libswig.a
+%dir %{_libdir}/swig_lib
+%{_libdir}/libswig.a
 /usr/include/swig.h
 %attr(711,root,root) /usr/bin/swig
 %{_mandir}/man1/swig.1
