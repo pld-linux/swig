@@ -1,18 +1,20 @@
 Summary:	Interface generator for Perl, Tcl, Guile and Python
 Summary(pl):	Generator interfejsu do Perl'a, Tcl'a, Guile'a i Python'a
 Name:		swig
-Version:	1.3a5
-Release:	0.2
+Version:	1.3.11
+Release:	1
 License:	distributable
 Group:		Development/Languages
-Source0:	http://prdownloads.sourceforge.net/swig/%{name}%{version}.tar.gz
-Patch0:		%{name}1.1p2-fixed-paths.patch
-Patch1:		%{name}-python.patch
-Patch2:		%{name}-configure.patch
+Source0:	http://prdownloads.sourceforge.net/swig/%{name}-%{version}.tar.gz
+Patch0:		%{name}-configure.patch
 URL:		http://www.swig.org
-BuildRequires:	python >= 2.1
-BuildRequires:	ruby >= 1.6.3
+BuildRequires:	autoconf
+BuildRequires:	guile-devel
+BuildRequires:	libstdc++-devel
 BuildRequires:	perl-devel >= 5.6.1
+BuildRequires:	php-devel >= 4.1.0
+BuildRequires:	python >= 2.2
+BuildRequires:	ruby >= 1.6.3
 BuildRequires:	tcl >= 8.3.3
 Icon:		swig.gif
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -48,16 +50,17 @@ bez ich wsparcia, SWIG nie by³by anie tak pote¿nym na¿edziem, ani tak
 fajnym w u¿yciu jak jest teraz. Wiekie dziêki!
 
 %prep
-%setup -q -n SWIG%{version}
-find Examples/ -type l -exec rm -v {} \;
-perl -pi -e 's|^\s*BIN_DIR\s*=\s*\@bindir\@|BIN_DIR = $(prefix)/@bindir@/|' Makefile.in
-%patch1 -p1
-%patch2 -p1
+%setup -q -n SWIG-%{version}
+%patch0 -p1
 
 %build
-autoconf
-(cd Source/DOH && autoconf)
-(cd Tools && autoconf)
+oldpwd=$PWD
+for i in . Source/DOH Tools Examples/GIFPlot; do
+  cd $i
+  aclocal
+  autoconf
+  cd $oldpwd
+done
 %configure
 %{__make} OPT="%{rpmcflags}"
 
@@ -66,12 +69,14 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT/{%{_mandir}/man1,%{_examplesdir}/%{name}-%{version}}
 
 %{__make} install \
-	prefix=$RPM_BUILD_ROOT/%{_prefix} \
-	BIN_DIR=$RPM_BUILD_ROOT/%{_bindir}
+	DESTDIR=$RPM_BUILD_ROOT
 
 cp -a Examples/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 gzip -9nf CHANGES NEW README ANNOUNCE TODO LICENSE
+
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -81,4 +86,6 @@ rm -rf $RPM_BUILD_ROOT
 %doc Doc *.gz
 %{_libdir}/%{name}*
 %attr(755,root,root) %{_bindir}/swig
+%attr(755,root,root) %{_libdir}/lib*.so
+%attr(755,root,root) %{_libdir}/lib*.la
 %{_examplesdir}/%{name}-%{version}
