@@ -9,7 +9,7 @@ Group(pl): Programowanie/Jêzyki
 Source0: swig1.1p5.tar.gz
 Patch: swig1.1p2-fixed-paths.patch
 Icon: swig.gif
-BuildRoot: /tmp/swig-root
+BuildRoot:	/tmp/%{name}-%{version}-root
 
 %description
 SWIG is a compiler that attempts to make it easy to integrate C, C++,
