@@ -1,14 +1,13 @@
-
 Summary:	Interface generator for Perl, Tcl, Guile and Python
 Summary(pl):	Generator interfejsów do Perla, Tcl-a, Guile'a i Pythona
 Summary(pt_BR):	Gerador de Interfaces e "Wrappers" Simplificado (SWIG)
 Name:		swig
-Version:	1.3.19
-Release:	7
+Version:	1.3.20
+Release:	0.1
 License:	distributable
 Group:		Development/Languages
 Source0:	http://dl.sourceforge.net/swig/%{name}-%{version}.tar.gz
-# Source0-md5:	a733455544426b31868dd87fc162e750
+# Source0-md5:	aac11adef9f9709a75b9b0f676808d5f
 Patch0:		%{name}-format.patch
 Patch1:		%{name}-php.patch
 Patch2:		%{name}-php-tsrm.patch
@@ -21,13 +20,14 @@ BuildRequires:	automake
 BuildRequires:	guile-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool
+BuildRequires:	ocaml
 BuildRequires:	perl-devel >= 5.6.1
 BuildRequires:	php-devel >= 4.1.0
 BuildRequires:	php-cgi
 BuildRequires:	python-devel >= 2.3.2
 BuildRequires:	ruby >= 1.6.3
 BuildRequires:	tcl-devel >= 8.3.3
-BuildRequires:	ocaml
+Obsoletes:	swig-ocaml
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -132,17 +132,6 @@ SWIG library: tcl.
 %description tcl -l pl
 Biblioteka SWIG: tcl.
 
-%package ocaml
-Summary:	SWIG library: ocaml
-Summary(pl):	Biblioteka SWIG: ocaml
-Group:		Libraries
-
-%description ocaml
-SWIG library: ocaml.
-
-%description ocaml -l pl
-Biblioteka SWIG: ocaml.
-
 %prep
 %setup -q -n SWIG-%{version}
 %patch0 -p1
@@ -152,24 +141,21 @@ Biblioteka SWIG: ocaml.
 %patch4 -p1
 
 %build
-oldpwd=$PWD
-for i in . Tools; do
-  cd $i
-  %{__libtoolize}
-  %{__aclocal}
-  %{__autoconf}
-  cd $oldpwd
-done
+%{__libtoolize}
+%{__aclocal} -I Tools/config
+%{__autoconf}
 %configure
 
-%{__make} OPT="%{rpmcflags}"
+%{__make} source runtime \
+	OPT="%{rpmcflags}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_mandir}/man1,%{_examplesdir}/%{name}-%{version}}
 
-%{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT
+%{__make} install install-runtime \
+	DESTDIR=$RPM_BUILD_ROOT \
+	M4_INSTALL_DIR=$RPM_BUILD_ROOT%{_aclocaldir}
 
 cp -a Examples/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
@@ -179,44 +165,64 @@ rm -rf $RPM_BUILD_ROOT
 %post	-p /sbin/ldconfig
 %postun	-p /sbin/ldconfig
 
+%post	guile -p /sbin/ldconfig
+%postun	guile -p /sbin/ldconfig
+
+%post	perl -p /sbin/ldconfig
+%postun	perl -p /sbin/ldconfig
+
+%post	php -p /sbin/ldconfig
+%postun	php -p /sbin/ldconfig
+
+%post	python -p /sbin/ldconfig
+%postun	python -p /sbin/ldconfig
+
+%post	ruby -p /sbin/ldconfig
+%postun	ruby -p /sbin/ldconfig
+
+%post	tcl -p /sbin/ldconfig
+%postun	tcl -p /sbin/ldconfig
+
 %files
 %defattr(644,root,root,755)
 %doc Doc CHANGES NEW README ANNOUNCE TODO LICENSE
 %{_libdir}/%{name}*
 %attr(755,root,root) %{_bindir}/swig
+%{_aclocaldir}/swig.m4
 %{_examplesdir}/%{name}-%{version}
 
 %files guile
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/lib*guile.so
-%{_libdir}/lib*guile.la
+%attr(755,root,root) %{_libdir}/libswigguile*.so.*.*.*
+%attr(755,root,root) %{_libdir}/libswigguile*.so
+%{_libdir}/libswigguile*.la
 
 %files perl
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/lib*pl.so
-%{_libdir}/lib*pl.la
+%attr(755,root,root) %{_libdir}/libswigpl.so.*.*.*
+%attr(755,root,root) %{_libdir}/libswigpl.so
+%{_libdir}/libswigpl.la
 
 %files php
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/lib*php4.so
-%{_libdir}/lib*php4.la
+%attr(755,root,root) %{_libdir}/libswigphp4.so.*.*.*
+%attr(755,root,root) %{_libdir}/libswigphp4.so
+%{_libdir}/libswigphp4.la
 
 %files python
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/lib*py.so
-%{_libdir}/lib*py.la
+%attr(755,root,root) %{_libdir}/libswigpy.so.*.*.*
+%attr(755,root,root) %{_libdir}/libswigpy.so
+%{_libdir}/libswigpy.la
 
 %files ruby
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/lib*rb.so
-%{_libdir}/lib*rb.la
+%attr(755,root,root) %{_libdir}/libswigrb.so.*.*.*
+%attr(755,root,root) %{_libdir}/libswigrb.so
+%{_libdir}/libswigrb.la
 
 %files tcl
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/lib*tcl*.so
-%{_libdir}/lib*tcl*.la
-
-%files ocaml
-%defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/lib*ocaml*.so*
-%{_libdir}/lib*ocaml*.la
+%attr(755,root,root) %{_libdir}/libswigtcl*.so.*.*.*
+%attr(755,root,root) %{_libdir}/libswigtcl*.so
+%{_libdir}/libswigtcl*.la
