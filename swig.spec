@@ -65,5 +65,5 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/swig_lib
 %{_libdir}/libswig.a
 /usr/include/swig.h
-%attr(711,root,root) /usr/bin/swig
+%attr(711,root,root) %{_bindir}/swig
 %{_mandir}/man1/swig.1
