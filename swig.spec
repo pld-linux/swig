@@ -49,7 +49,7 @@ find Examples/ -type l -exec rm -v {} \;
 
 %build
 %configure
-%{__make} OPT="%{?debug:-O0 -g}%{!?debug:$RPM_OPT_FLAGS}"
+%{__make} OPT="%{rpmcflags}"
 %{__make} test
 
 %install
