@@ -7,6 +7,7 @@ Release:	1
 License:	distributable
 Group:		Development/Languages
 Source0:	http://dl.sourceforge.net/swig/%{name}-%{version}.tar.gz
+Patch0:		%{name}-format.patch
 URL:		http://www.swig.org/
 Icon:		swig.gif
 BuildRequires:	autoconf
@@ -126,6 +127,7 @@ Biblioteka SWIG: ocaml.
 
 %prep
 %setup -q -n SWIG-%{version}
+%patch -p1
 
 %build
 oldpwd=$PWD
