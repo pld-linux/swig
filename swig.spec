@@ -67,7 +67,7 @@ install -d $RPM_BUILD_ROOT/{%{_mandir}/man1,%{_examplesdir}/%{name}-%{version}}
 
 %{__make} install \
 	prefix=$RPM_BUILD_ROOT/%{_prefix} \
-	BIN_DIR=$RPM_BUILD_ROOT/%{_bindir} 
+	BIN_DIR=$RPM_BUILD_ROOT/%{_bindir}
 
 cp -a Examples/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
