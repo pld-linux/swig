@@ -1,0 +1,12 @@
+diff -Nuard SWIG-1.3.19.orig/Lib/php4/php4run.swg SWIG-1.3.19/Lib/php4/php4run.swg
+--- SWIG-1.3.19.orig/Lib/php4/php4run.swg	2002-11-30 23:01:01.000000000 +0100
++++ SWIG-1.3.19/Lib/php4/php4run.swg	2003-09-13 21:51:40.000000000 +0200
+@@ -195,7 +195,7 @@
+   p = value->ptr;
+   if (type==-1) return -1;
+ 
+-  type_name=zend_rsrc_list_get_rsrc_type(z->value.lval);
++  type_name=zend_rsrc_list_get_rsrc_type(z->value.lval TSRMLS_CC);
+ 
+   return SWIG_ZTS_ConvertResourceData(p,type,type_name,ptr,ty TSRMLS_CC);
+ }
