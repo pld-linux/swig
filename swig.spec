@@ -7,6 +7,7 @@ Release:	1
 License:	distributable
 Group:		Development/Languages
 Source0:	http://dl.sourceforge.net/swig/%{name}-%{version}.tar.gz
+# Source0-md5:	a733455544426b31868dd87fc162e750
 Patch0:		%{name}-format.patch
 URL:		http://www.swig.org/
 Icon:		swig.gif
