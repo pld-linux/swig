@@ -1,14 +1,14 @@
-Summary: Interface generator for Perl, Tcl, Guile and Python
-Summary(pl): Generator interfejsu do Perl'a, Tcl'a, Guile'a i Python'a
-Name: swig
-Version: 1.1p5
-Release: 1
-Copyright: distributable
-Group: Development/Languages
-Group(pl): Programowanie/Jêzyki
-Source0: swig1.1p5.tar.gz
-Patch: swig1.1p2-fixed-paths.patch
-Icon: swig.gif
+Summary:	Interface generator for Perl, Tcl, Guile and Python
+Summary(pl):	Generator interfejsu do Perl'a, Tcl'a, Guile'a i Python'a
+Name:		swig
+Version:	1.1p5
+Release:	1
+Copyright:	distributable
+Group:		Development/Languages
+Group(pl):	Programowanie/Jêzyki
+Source0:	%{name}%{version}.tar.gz
+Patch:		swig1.1p2-fixed-paths.patch
+Icon:		swig.gif
 BuildRoot:	/tmp/%{name}-%{version}-root
 
 %description
@@ -42,7 +42,7 @@ ale bez ich wsparcia, SWIG nie by³by anie tak pote¿nym na¿edziem, ani tak
 fajnym w u¿yciu jak jest teraz. Wiekie dziêki!
 
 %prep
-%setup -n SWIG1.1p5
+%setup -q -n SWIG1.1p5
 find Examples/ -type l -exec rm -v {} \;
 %patch -p1
 
@@ -53,17 +53,26 @@ make test
 
 %install
 rm -rf $RPM_BUILD_ROOT
-mkdir -p $RPM_BUILD_ROOT/usr
-make prefix=$RPM_BUILD_ROOT/usr install
+
+install -d $RPM_BUILD_ROOT/{%{_libdir}/swig_lib,%{_mandir}/man1,%{_prefix}/src/examples/swig}
+make install prefix=$RPM_BUILD_ROOT/%{_prefix} \
+	exec_prefix=$RPM_BUILD_ROOT/%{_prefix} \
+	MAN_DIR=$RPM_BUILD_ROOT/%{_mandir}/man1
+
+cp -a Examples/* $RPM_BUILD_ROOT/%{_prefix}/src/examples/swig/
+
+gzip -9nf CHANGES NEW README TROUBLESHOOTING ToDo \
+	$RPM_BUILD_ROOT/%{_mandir}/man1/swig.1
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
-%defattr(644,root,root,755)
-%doc Doc Examples CHANGES Copyright INSTALL NEW README TROUBLESHOOTING ToDo
+%defattr(-,root,root,755)
+%doc Doc {CHANGES,NEW,README,TROUBLESHOOTING,ToDo}.gz
 %dir %{_libdir}/swig_lib
 %{_libdir}/libswig.a
 %{_includedir}/swig.h
-%attr(711,root,root) %{_bindir}/swig
-%{_mandir}/man1/swig.1
+%attr(755,root,root) %{_bindir}/swig
+%{_mandir}/man1/swig.1.gz
+%{_prefix}/src/examples/swig
