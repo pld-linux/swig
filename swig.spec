@@ -2,13 +2,15 @@ Summary:	Interface generator for Perl, Tcl, Guile and Python
 Summary(pl):	Generator interfejsu do Perl'a, Tcl'a, Guile'a i Python'a
 Name:		swig
 Version:	1.3a5
-Release:	0.1
+Release:	0.2
 License:	distributable
 Group:		Development/Languages
 Group(de):	Entwicklung/Sprachen
 Group(pl):	Programowanie/Jêzyki
 Source0:	http://prdownloads.sourceforge.net/swig/%{name}%{version}.tar.gz
 Patch0:		%{name}1.1p2-fixed-paths.patch
+Patch1:		%{name}-python.patch
+Patch2:		%{name}-configure.patch
 URL:		http://www.swig.org
 BuildRequires:	python >= 2.1
 BuildRequires:	ruby >= 1.6.3
@@ -51,9 +53,14 @@ fajnym w u¿yciu jak jest teraz. Wiekie dziêki!
 %setup -q -n SWIG%{version}
 find Examples/ -type l -exec rm -v {} \;
 perl -pi -e 's|^\s*BIN_DIR\s*=\s*\@bindir\@|BIN_DIR = $(prefix)/@bindir@/|' Makefile.in
+%patch1 -p1
+%patch2 -p1
 
 %build
-%configure2_13
+autoconf
+(cd Source/DOH && autoconf)
+(cd Tools && autoconf)
+%configure
 %{__make} OPT="%{rpmcflags}"
 
 %install

@@ -1,0 +1,8 @@
+--- SWIG1.3a5/Source/DOH/configure.in~	Wed Jun  7 00:28:42 2000
++++ SWIG1.3a5/Source/DOH/configure.in	Fri Dec 14 01:05:56 2001
+@@ -41,4 +41,4 @@
+ AC_HEADER_STDC
+ dnl Checks for library functions.
+ 
+-AC_OUTPUT(Makefile Doh/Makefile Test/Makefile)
++AC_OUTPUT(Makefile Doh/Makefile)
