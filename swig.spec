@@ -1,10 +1,11 @@
 Summary: Interface generator for Perl, Tcl, Guile and Python
+Summary(pl): Generator interfejsu do Perl'a, Tcl'a, Guile'a i Python'a
 Name: swig
 Version: 1.1p5
-Release: 2
+Release: 1
 Copyright: distributable
-Packager: Oliver Andrich <olli@rhein-zeitung.de>
 Group: Development/Languages
+Group(pl): Programowanie/Jêzyki
 Source0: swig1.1p5.tar.gz
 Patch: swig1.1p2-fixed-paths.patch
 Icon: swig.gif
@@ -26,6 +27,20 @@ individually, but without this support, SWIG would be not be nearly as
 powerful or fun to use as it is now. Many thanks!
 
 
+%description -l pl
+SWIG jesk kompilatorem, który próbuje ulatwic integrowanie kodu napisanego
+w C, C++ lub Objective-C z jêzykami skryptowymitakimi jak Perl, Tcl i Python.
+Mówi±c najpro¶ciej, jesli dostarczysz mu zestaw zdeklarowanych w ANSI C/C++
+funkcji, SWIG wygeneruje Ci interfejs pomiedzy C a Twoim ulubionym jêzykiem
+skryptowym. To tylko drobna czê¶æ tego co SWIG potrafi robiæ, bardziej 
+zaawansowane zastosowania to automatyczne generowanie dokumentacji,
+zarzadzanie bibliotekami i modu³ami i wiele innych.
+
+SWIG jest w ca³o¶ci dzi³em ludzi, którzy go u¿ywali i wprowadzali nowe 
+pomys³y. Zbyt wielu ich jest, aby dziêkowaæ ka¿demu z nich osobno, 
+ale bez ich wsparcia, SWIG nie by³by anie tak pote¿nym na¿edziem, ani tak
+fajnym w u¿yciu jak jest teraz. Wiekie dziêki!
+
 %prep
 %setup -n SWIG1.1p5
 find Examples/ -type l -exec rm -v {} \;
@@ -45,9 +60,10 @@ make prefix=$RPM_BUILD_ROOT/usr install
 rm -rf $RPM_BUILD_ROOT
 
 %files
+%defattr(644,root,root,755)
 %doc Doc Examples CHANGES Copyright INSTALL NEW README TROUBLESHOOTING ToDo
-/usr/lib/swig_lib
+%dir /usr/lib/swig_lib
 /usr/lib/libswig.a
 /usr/include/swig.h
-/usr/bin/swig
-/usr/man/man1/swig.1
+%attr(711,root,root) /usr/bin/swig
+%attr(644,root,man) /usr/man/man1/swig.1
