@@ -23,7 +23,7 @@ BuildRequires:	libtool
 BuildRequires:	perl-devel >= 5.6.1
 BuildRequires:	php-devel >= 4.1.0
 BuildRequires:	php-cgi
-BuildRequires:	python >= 2.2
+BuildRequires:	python-devel >= 2.2
 BuildRequires:	ruby >= 1.6.3
 BuildRequires:	tcl-devel >= 8.3.3
 BuildRequires:	ocaml
