@@ -2,12 +2,11 @@ Summary:	Interface generator for Perl, Tcl, Guile and Python
 Summary(pl):	Generator interfejsów do Perla, Tcl-a, Guile'a i Pythona
 Summary(pt_BR): Gerador de Interfaces e "Wrappers" Simplificado (SWIG)
 Name:		swig
-Version:	1.3.13
+Version:	1.3.15
 Release:	1
 License:	distributable
 Group:		Development/Languages
 Source0:	http://prdownloads.sourceforge.net/swig/%{name}-%{version}.tar.gz
-Patch0:		%{name}-configure.patch
 URL:		http://www.swig.org/
 Icon:		swig.gif
 BuildRequires:	autoconf
@@ -18,6 +17,7 @@ BuildRequires:	php-devel >= 4.1.0
 BuildRequires:	python >= 2.2
 BuildRequires:	ruby >= 1.6.3
 BuildRequires:	tcl >= 8.3.3
+BuildRequires:	ocaml-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -111,9 +111,19 @@ SWIG library: tcl.
 %description tcl -l pl
 Biblioteka SWIG: tcl.
 
+%package ocaml
+Summary:	SWIG library: ocaml
+Summary(pl):	Biblioteka SWIG: ocaml
+Group:		Libraries
+
+%description tcl
+SWIG library: ocaml.
+
+%description tcl -l pl
+Biblioteka SWIG: ocaml.
+
 %prep
 %setup -q -n SWIG-%{version}
-%patch0 -p1
 
 %build
 oldpwd=$PWD
@@ -175,3 +185,8 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/lib*tcl*.so
 %attr(755,root,root) %{_libdir}/lib*tcl*.la
+
+%files ocaml
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/lib*ocaml*.so
+%attr(755,root,root) %{_libdir}/lib*ocaml*.la
