@@ -13,6 +13,7 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	guile-devel
 BuildRequires:	libstdc++-devel
+BuildRequires:	libtool
 BuildRequires:	perl-devel >= 5.6.1
 BuildRequires:	php-devel >= 4.1.0
 BuildRequires:	python >= 2.2
