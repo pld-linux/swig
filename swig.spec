@@ -1,12 +1,12 @@
-
+#
 # Conditional build:
 %bcond_without	guile	# disable guile support
 %bcond_without	ocaml	# disable ocaml support
 %bcond_without	perl	# disable perl support
-%bcond_without	php		# disable php support
+%bcond_without	php	# disable php support
 %bcond_without	ruby	# disable ruby support
-%bcond_without	tcl		# disable tcl support
-
+%bcond_without	tcl	# disable tcl support
+#
 Summary:	Interface generator for Perl, Tcl, Guile and Python
 Summary(pl):	Generator interfejsów do Perla, Tcl-a, Guile'a i Pythona
 Summary(pt_BR):	Gerador de Interfaces e "Wrappers" Simplificado (SWIG)
