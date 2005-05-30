@@ -38,6 +38,12 @@ BuildRequires:	python-devel >= 1:2.3.2
 %{?with_ruby:BuildRequires:	ruby-devel >= 1:1.6.3}
 %{?with_tcl:BuildRequires:	tcl-devel >= 8.3.3}
 Obsoletes:	swig-ocaml
+Obsoletes:	swig-guile
+Obsoletes:	swig-perl
+Obsoletes:	swig-php
+Obsoletes:	swig-python
+Obsoletes:	swig-ruby
+Obsoletes:	swig-tcl
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
