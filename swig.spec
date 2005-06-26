@@ -11,15 +11,14 @@ Summary:	Interface generator for Perl, Tcl, Guile and Python
 Summary(pl):	Generator interfejsów do Perla, Tcl-a, Guile'a i Pythona
 Summary(pt_BR):	Gerador de Interfaces e "Wrappers" Simplificado (SWIG)
 Name:		swig
-Version:	1.3.21
-Release:	5
+Version:	1.3.25
+Release:	1
 License:	distributable
 Group:		Development/Languages
 Source0:	http://dl.sourceforge.net/swig/%{name}-%{version}.tar.gz
-# Source0-md5:	88ff5b99be3eafebb8a6e20f4f986c04
+# Source0-md5:	0a338d9de65e266338cbe7e2bea7a4a9
 Patch0:		%{name}-format.patch
 Patch1:		%{name}-php.patch
-Patch2:		%{name}-php-tsrm.patch
 Patch3:		%{name}-php-freearg.patch
 Patch4:		%{name}-php-vdecl.patch
 Patch5:		%{name}-python-lib64.patch
@@ -80,6 +79,7 @@ com um mínimo de esforço.
 Summary:	SWIG library: guile
 Summary(pl):	Biblioteka SWIG: guile
 Group:		Libraries
+Requires:	%{name} = %{version}-%{release}
 
 %description guile
 SWIG library: guile.
@@ -91,6 +91,7 @@ Biblioteka SWIG: guile.
 Summary:	SWIG library: Perl
 Summary(pl):	Biblioteka SWIG: Perl
 Group:		Libraries
+Requires:	%{name} = %{version}-%{release}
 
 %description perl
 SWIG library: perl.
@@ -102,6 +103,7 @@ Biblioteka SWIG: perl.
 Summary:	SWIG library: php
 Summary(pl):	Biblioteka SWIG: php
 Group:		Libraries
+Requires:	%{name} = %{version}-%{release}
 
 %description php
 SWIG library: php.
@@ -113,6 +115,7 @@ Biblioteka SWIG: php.
 Summary:	SWIG library: python
 Summary(pl):	Biblioteka SWIG: python
 Group:		Libraries
+Requires:	%{name} = %{version}-%{release}
 
 %description python
 SWIG library: python.
@@ -124,6 +127,7 @@ Biblioteka SWIG: python.
 Summary:	SWIG library: ruby
 Summary(pl):	Biblioteka SWIG: ruby
 Group:		Libraries
+Requires:	%{name} = %{version}-%{release}
 
 %description ruby
 SWIG library: ruby.
@@ -135,6 +139,7 @@ Biblioteka SWIG: ruby.
 Summary:	SWIG library: tcl
 Summary(pl):	Biblioteka SWIG: tcl
 Group:		Libraries
+Requires:	%{name} = %{version}-%{release}
 
 %description tcl
 SWIG library: tcl.
@@ -143,10 +148,9 @@ SWIG library: tcl.
 Biblioteka SWIG: tcl.
 
 %prep
-%setup -q -n SWIG-%{version}
+%setup -q
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
 %patch3 -p1
 %patch4 -p1
 %if "%{_lib}" == "lib64"
@@ -157,16 +161,17 @@ Biblioteka SWIG: tcl.
 %{__libtoolize}
 %{__aclocal} -I Tools/config
 %{__autoconf}
+%{__automake}
 %configure
 
-%{__make} source runtime \
+%{__make} source \
 	OPT="%{rpmcflags}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_mandir}/man1,%{_examplesdir}/%{name}-%{version}}
 
-%{__make} install install-runtime \
+%{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
 	M4_INSTALL_DIR=$RPM_BUILD_ROOT%{_aclocaldir}
 
@@ -199,53 +204,46 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc Doc CHANGES NEW README ANNOUNCE TODO LICENSE
-%{_libdir}/%{name}*
 %attr(755,root,root) %{_bindir}/swig
-%{_aclocaldir}/swig.m4
+%{_datadir}/%{name}
+%{?with_guile:%exclude %{_datadir}/%{name}/%{version}/guile}
+%{?with_perl:%exclude %{_datadir}/%{name}/%{version}/perl5}
+%{?with_php:%exclude %{_datadir}/%{name}/%{version}/php4}
+%exclude %{_datadir}/%{name}/%{version}/python
+%{?with_ruby:%exclude %{_datadir}/%{name}/%{version}/ruby}
+%{?with_tcl:%exclude %{_datadir}/%{name}/%{version}/tcl}
 %{_examplesdir}/%{name}-%{version}
 
 %if %{with guile}
 %files guile
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libswigguile*.so.*.*.*
-%attr(755,root,root) %{_libdir}/libswigguile*.so
-%{_libdir}/libswigguile*.la
+%{_datadir}/%{name}/%{version}/guile
 %endif
 
 %if %{with perl}
 %files perl
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libswigpl.so.*.*.*
-%attr(755,root,root) %{_libdir}/libswigpl.so
-%{_libdir}/libswigpl.la
+%{_datadir}/%{name}/%{version}/perl5
 %endif
 
 %if %{with php}
 %files php
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libswigphp4.so.*.*.*
-%attr(755,root,root) %{_libdir}/libswigphp4.so
-%{_libdir}/libswigphp4.la
+%{_datadir}/%{name}/%{version}/php4
 %endif
 
 %files python
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libswigpy.so.*.*.*
-%attr(755,root,root) %{_libdir}/libswigpy.so
-%{_libdir}/libswigpy.la
+%{_datadir}/%{name}/%{version}/python
 
 %if %{with ruby}
 %files ruby
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libswigrb.so.*.*.*
-%attr(755,root,root) %{_libdir}/libswigrb.so
-%{_libdir}/libswigrb.la
+%{_datadir}/%{name}/%{version}/ruby
 %endif
 
 %if %{with tcl}
 %files tcl
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libswigtcl*.so.*.*.*
-%attr(755,root,root) %{_libdir}/libswigtcl*.so
-%{_libdir}/libswigtcl*.la
+%{_datadir}/%{name}/%{version}/tcl
 %endif
