@@ -1,51 +1,28 @@
-diff -uNr SWIG-1.3.19.orig/Source/Modules/php4.cxx SWIG-1.3.19/Source/Modules/php4.cxx
---- SWIG-1.3.19.orig/Source/Modules/php4.cxx	2003-11-07 20:20:55.000000000 +0100
-+++ SWIG-1.3.19/Source/Modules/php4.cxx	2003-11-07 22:17:55.576035576 +0100
-@@ -856,6 +856,9 @@
-     SwigType_emit_type_table(f_runtime,type_table);
-     Printf(s_header,"%s",type_table);
-     Delete(type_table);
-+
-+    Printf(s_vdecl, "/* end vdecl subsection */\n");
-+    Printv(f_runtime, s_vdecl, NIL);
+--- swig-1.3.27/Source/Modules/php4.cxx.orig	2005-10-18 18:32:40.296808424 +0200
++++ swig-1.3.27/Source/Modules/php4.cxx	2005-10-18 19:13:17.642275592 +0200
+@@ -954,10 +954,10 @@
      
-     /* Oh dear, more things being called in the wrong order. This whole
-      * function really needs totally redoing.
-@@ -868,9 +871,10 @@
-     
-     Printf(s_header, "/* end header section */\n");
-     Printf(s_wrappers, "/* end wrapper section */\n");
--    Printf(s_vdecl, "/* end vdecl subsection */\n");
--    
--    Printv(f_runtime, s_vdecl, s_wrappers, s_init, NIL);
-+
-+    Printv(f_runtime, s_wrappers, s_init, NIL);
-+
-+
-     Delete(s_header);
-     Delete(s_wrappers);
-     Delete(s_init);
-@@ -1006,8 +1010,8 @@
-     }
- 
      if (mvr) { // do prop[gs]et header
--      if (mvrset) Printf(f->def, "static int _wrap_%s(zend_property_reference *property_reference, pval *value) {\n",iname);
--      else Printf(f->def, "static pval _wrap_%s(zend_property_reference *property_reference) {\n",iname);
-+      if (mvrset) Printf(f->def, "static int _wrap_%s(zend_property_reference *property_reference, pval *value) {\nTSRMLS_FETCH();\n",iname);
-+      else Printf(f->def, "static pval _wrap_%s(zend_property_reference *property_reference) {\nTSRMLS_FETCH();\n",iname);
-     } else { // regular header
-       create_command(iname, Char(Swig_name_wrapper(iname)));
-       Printv(f->def, "ZEND_NAMED_FUNCTION(" , Swig_name_wrapper(iname), ") {\n", NIL);
-@@ -1661,10 +1665,10 @@
-       while(base.item && Getattr(base.item,"feature:ignore")) base = Next(base);
+       if (mvrset) {
+-        Printf(f->def, "static int _wrap_%s(zend_property_reference *property_reference, pval *value) {\n",iname);
++        Printf(f->def, "static int _wrap_%s(zend_property_reference *property_reference, pval *value) {\nTSRMLS_FETCH();\n",iname);
+       }
+       else {
+-        Printf(f->def, "static pval _wrap_%s(zend_property_reference *property_reference) {\n",iname);
++        Printf(f->def, "static pval _wrap_%s(zend_property_reference *property_reference) {\nTSRMLS_FETCH();\n",iname);
+       }
+     } else {
+       // regular header
+@@ -1653,10 +1653,10 @@
+       }
  
        if (base.item) {
 -        Printf(s_oinit,"if (! (ptr_ce_swig_%s=zend_register_internal_class_ex(&ce_swig_%s,&ce_swig_%s,NULL))) zend_error(E_ERROR,\"Error registering wrapper for class %s\");\n",
 +        Printf(s_oinit,"if (! (ptr_ce_swig_%s=zend_register_internal_class_ex(&ce_swig_%s,&ce_swig_%s,NULL TSRMLS_CC))) zend_error(E_ERROR,\"Error registering wrapper for class %s\");\n",
-           shadow_classname,shadow_classname,GetChar(base.item, "sym:name"), shadow_classname);
+                shadow_classname,shadow_classname,GetChar(base.item, "sym:name"), shadow_classname);
        } else {
 -        Printf(s_oinit,"if (! (ptr_ce_swig_%s=zend_register_internal_class_ex(&ce_swig_%s,NULL,NULL))) zend_error(E_ERROR,\"Error registering wrapper for class %s\");\n",
 +        Printf(s_oinit,"if (! (ptr_ce_swig_%s=zend_register_internal_class_ex(&ce_swig_%s,NULL,NULL TSRMLS_CC))) zend_error(E_ERROR,\"Error registering wrapper for class %s\");\n",
-           shadow_classname,shadow_classname, shadow_classname);
+                shadow_classname,shadow_classname, shadow_classname);
        }
        Printf(s_oinit,"\n");
