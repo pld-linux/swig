@@ -33,7 +33,11 @@ BuildRequires:	libtool
 %{?with_php:BuildRequires:	php-devel >= 4.1.0}
 %{?with_php:BuildRequires:	php-cli}
 BuildRequires:	python-devel >= 1:2.3.2
-%{?with_ruby:BuildRequires:	ruby-devel >= 1:1.6.3}
+%if %{with ruby}
+BuildRequires:	rpmbuild(macros) >= 1.277
+BuildRequires:	ruby-devel >= 1:1.6.3
+%ruby_mod_ver_requires_eq
+%endif
 %{?with_tcl:BuildRequires:	tcl-devel >= 8.3.3}
 Obsoletes:	swig-ocaml
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
