@@ -36,7 +36,7 @@ BuildRequires:	python-devel >= 1:2.3.2
 %if %{with ruby}
 BuildRequires:	rpmbuild(macros) >= 1.277
 BuildRequires:	ruby-devel >= 1:1.6.3
-%ruby_mod_ver_requires_eq
+%{?ruby_mod_ver_requires_eq}
 %endif
 %{?with_tcl:BuildRequires:	tcl-devel >= 8.3.3}
 Obsoletes:	swig-ocaml
