@@ -22,7 +22,6 @@ Patch1:		%{name}-php.patch
 Patch2:		%{name}-php-freearg.patch
 Patch3:		%{name}-php-vdecl.patch
 URL:		http://www.swig.org/
-Icon:		swig.gif
 BuildRequires:	autoconf
 BuildRequires:	automake
 %{?with_guile:BuildRequires:	guile-devel}
