@@ -29,8 +29,8 @@ BuildRequires:	libstdc++-devel
 BuildRequires:	libtool
 %{?with_ocaml:BuildRequires:	ocaml}
 %{?with_perl:BuildRequires:	perl-devel >= 1:5.6.1}
-%{?with_php:BuildRequires:	php-devel >= 4.1.0}
 %{?with_php:BuildRequires:	php-cli}
+%{?with_php:BuildRequires:	php-devel >= 4.1.0}
 BuildRequires:	python-devel >= 1:2.3.2
 %if %{with ruby}
 BuildRequires:	rpmbuild(macros) >= 1.277
