@@ -21,6 +21,7 @@ Patch0:		%{name}-format.patch
 Patch1:		%{name}-php.patch
 Patch2:		%{name}-php-freearg.patch
 Patch3:		%{name}-php-vdecl.patch
+Patch4:		%{name}-python25.patch
 URL:		http://www.swig.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -155,6 +156,7 @@ Biblioteka SWIG: tcl.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
 
 %build
 %{__libtoolize}
