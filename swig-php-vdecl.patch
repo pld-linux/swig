@@ -1,28 +1,28 @@
---- swig-1.3.27/Source/Modules/php4.cxx.orig	2005-10-18 18:32:40.296808424 +0200
-+++ swig-1.3.27/Source/Modules/php4.cxx	2005-10-18 19:13:17.642275592 +0200
-@@ -954,10 +954,10 @@
-     
-     if (mvr) { // do prop[gs]et header
+--- swig-1.3.30/Source/Modules/php4.cxx.orig	2006-11-18 20:50:19.513710000 +0100
++++ swig-1.3.30/Source/Modules/php4.cxx	2006-11-18 21:01:47.056678750 +0100
+@@ -1019,9 +1019,9 @@
+ 
+     if (mvr) {			// do prop[gs]et header
        if (mvrset) {
--        Printf(f->def, "static int _wrap_%s(zend_property_reference *property_reference, pval *value) {\n",iname);
-+        Printf(f->def, "static int _wrap_%s(zend_property_reference *property_reference, pval *value) {\nTSRMLS_FETCH();\n",iname);
-       }
-       else {
--        Printf(f->def, "static pval _wrap_%s(zend_property_reference *property_reference) {\n",iname);
-+        Printf(f->def, "static pval _wrap_%s(zend_property_reference *property_reference) {\nTSRMLS_FETCH();\n",iname);
+-	Printf(f->def, "static int _wrap_%s(zend_property_reference *property_reference, pval *value) {\n", iname);
++	Printf(f->def, "static int _wrap_%s(zend_property_reference *property_reference, pval *value) {\nTSRMLS_FETCH();\n", iname);
+       } else {
+-	Printf(f->def, "static pval _wrap_%s(zend_property_reference *property_reference) {\n", iname);
++	Printf(f->def, "static pval _wrap_%s(zend_property_reference *property_reference) {\nTSRMLS_FETCH();\n", iname);
        }
      } else {
        // regular header
-@@ -1653,10 +1653,10 @@
-       }
+@@ -2262,11 +2262,11 @@
  
        if (base.item) {
--        Printf(s_oinit,"if (! (ptr_ce_swig_%s=zend_register_internal_class_ex(&ce_swig_%s,&ce_swig_%s,NULL))) zend_error(E_ERROR,\"Error registering wrapper for class %s\");\n",
-+        Printf(s_oinit,"if (! (ptr_ce_swig_%s=zend_register_internal_class_ex(&ce_swig_%s,&ce_swig_%s,NULL TSRMLS_CC))) zend_error(E_ERROR,\"Error registering wrapper for class %s\");\n",
-                shadow_classname,shadow_classname,GetChar(base.item, "sym:name"), shadow_classname);
+ 	Printf(s_oinit,
+-	       "if (! (ptr_ce_swig_%s=zend_register_internal_class_ex(&ce_swig_%s,&ce_swig_%s,NULL))) zend_error(E_ERROR,\"Error registering wrapper for class %s\");\n",
++	       "if (! (ptr_ce_swig_%s=zend_register_internal_class_ex(&ce_swig_%s,&ce_swig_%s,NULL TSRMLS_CC))) zend_error(E_ERROR,\"Error registering wrapper for class %s\");\n",
+ 	       shadow_classname, shadow_classname, GetChar(base.item, "sym:name"), shadow_classname);
        } else {
--        Printf(s_oinit,"if (! (ptr_ce_swig_%s=zend_register_internal_class_ex(&ce_swig_%s,NULL,NULL))) zend_error(E_ERROR,\"Error registering wrapper for class %s\");\n",
-+        Printf(s_oinit,"if (! (ptr_ce_swig_%s=zend_register_internal_class_ex(&ce_swig_%s,NULL,NULL TSRMLS_CC))) zend_error(E_ERROR,\"Error registering wrapper for class %s\");\n",
-                shadow_classname,shadow_classname, shadow_classname);
+ 	Printf(s_oinit,
+-	       "if (! (ptr_ce_swig_%s=zend_register_internal_class_ex(&ce_swig_%s,NULL,NULL))) zend_error(E_ERROR,\"Error registering wrapper for class %s\");\n",
++	       "if (! (ptr_ce_swig_%s=zend_register_internal_class_ex(&ce_swig_%s,NULL,NULL TSRMLS_CC))) zend_error(E_ERROR,\"Error registering wrapper for class %s\");\n",
+ 	       shadow_classname, shadow_classname, shadow_classname);
        }
-       Printf(s_oinit,"\n");
+       Printf(s_oinit, "\n");
