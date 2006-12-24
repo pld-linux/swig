@@ -202,7 +202,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc Doc CHANGES NEW README ANNOUNCE TODO LICENSE
+%doc Doc CHANGES CHANGES.current NEW README ANNOUNCE TODO LICENSE
 %attr(755,root,root) %{_bindir}/swig
 %{_datadir}/%{name}
 %{?with_guile:%exclude %{_datadir}/%{name}/%{version}/guile}
