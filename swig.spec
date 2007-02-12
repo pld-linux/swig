@@ -8,8 +8,8 @@
 %bcond_without	tcl	# disable tcl support
 #
 Summary:	Interface generator for Perl, Tcl, Guile and Python
-Summary(pl.UTF-8):   Generator interfejsów do Perla, Tcl-a, Guile'a i Pythona
-Summary(pt_BR.UTF-8):   Gerador de Interfaces e "Wrappers" Simplificado (SWIG)
+Summary(pl.UTF-8):	Generator interfejsów do Perla, Tcl-a, Guile'a i Pythona
+Summary(pt_BR.UTF-8):	Gerador de Interfaces e "Wrappers" Simplificado (SWIG)
 Name:		swig
 Version:	1.3.31
 Release:	1
@@ -78,7 +78,7 @@ com um mínimo de esforço.
 
 %package guile
 Summary:	SWIG library: guile
-Summary(pl.UTF-8):   Biblioteka SWIG: guile
+Summary(pl.UTF-8):	Biblioteka SWIG: guile
 Group:		Libraries
 Requires:	%{name} = %{version}-%{release}
 
@@ -90,7 +90,7 @@ Biblioteka SWIG: guile.
 
 %package perl
 Summary:	SWIG library: Perl
-Summary(pl.UTF-8):   Biblioteka SWIG: Perl
+Summary(pl.UTF-8):	Biblioteka SWIG: Perl
 Group:		Libraries
 Requires:	%{name} = %{version}-%{release}
 
@@ -102,7 +102,7 @@ Biblioteka SWIG: perl.
 
 %package php
 Summary:	SWIG library: php
-Summary(pl.UTF-8):   Biblioteka SWIG: php
+Summary(pl.UTF-8):	Biblioteka SWIG: php
 Group:		Libraries
 Requires:	%{name} = %{version}-%{release}
 
@@ -114,7 +114,7 @@ Biblioteka SWIG: php.
 
 %package python
 Summary:	SWIG library: python
-Summary(pl.UTF-8):   Biblioteka SWIG: python
+Summary(pl.UTF-8):	Biblioteka SWIG: python
 Group:		Libraries
 Requires:	%{name} = %{version}-%{release}
 
@@ -126,7 +126,7 @@ Biblioteka SWIG: python.
 
 %package ruby
 Summary:	SWIG library: ruby
-Summary(pl.UTF-8):   Biblioteka SWIG: ruby
+Summary(pl.UTF-8):	Biblioteka SWIG: ruby
 Group:		Libraries
 Requires:	%{name} = %{version}-%{release}
 %{?ruby_mod_ver_requires_eq}
@@ -139,7 +139,7 @@ Biblioteka SWIG: ruby.
 
 %package tcl
 Summary:	SWIG library: tcl
-Summary(pl.UTF-8):   Biblioteka SWIG: tcl
+Summary(pl.UTF-8):	Biblioteka SWIG: tcl
 Group:		Libraries
 Requires:	%{name} = %{version}-%{release}
 
