@@ -1,6 +1,6 @@
 Summary:	Interface generator for Perl, Tcl, Guile and Python
-Summary(pl):	Generator interfejsów do Perla, Tcl-a, Guile'a i Pythona
-Summary(pt_BR):	Gerador de Interfaces e "Wrappers" Simplificado (SWIG)
+Summary(pl.UTF-8):   Generator interfejsÃ³w do Perla, Tcl-a, Guile'a i Pythona
+Summary(pt_BR.UTF-8):   Gerador de Interfaces e "Wrappers" Simplificado (SWIG)
 Name:		swig
 Version:	1.3.24
 Release:	1
@@ -52,26 +52,26 @@ suggested new idea. There are far too many people to thank
 individually, but without this support, SWIG would be not be nearly as
 powerful or fun to use as it is now. Many thanks!
 
-%description -l pl
-SWIG jesk kompilatorem, który próbuje u³atwiæ integrowanie kodu
-napisanego w C, C++ lub Objective-C z jêzykami skryptowymi, takimi jak
-Perl, Tcl i Python. Mówi±c najpro¶ciej, je¶li dostarczysz mu zestaw
+%description -l pl.UTF-8
+SWIG jesk kompilatorem, ktÃ³ry prÃ³buje uÅ‚atwiÄ‡ integrowanie kodu
+napisanego w C, C++ lub Objective-C z jÄ™zykami skryptowymi, takimi jak
+Perl, Tcl i Python. MÃ³wiÄ…c najproÅ›ciej, jeÅ›li dostarczysz mu zestaw
 zadeklarowanych w ANSI C/C++ funkcji, SWIG wygeneruje Ci interfejs
-pomiêdzy C a Twoim ulubionym jêzykiem skryptowym. To tylko drobna
-czê¶æ tego co SWIG potrafi robiæ, bardziej zaawansowane zastosowania
-to automatyczne generowanie dokumentacji, zarz±dzanie bibliotekami i
-modu³ami i wiele innych.
+pomiÄ™dzy C a Twoim ulubionym jÄ™zykiem skryptowym. To tylko drobna
+czÄ™Å›Ä‡ tego co SWIG potrafi robiÄ‡, bardziej zaawansowane zastosowania
+to automatyczne generowanie dokumentacji, zarzÄ…dzanie bibliotekami i
+moduÅ‚ami i wiele innych.
 
-SWIG jest w ca³o¶ci dzie³em ludzi, którzy go u¿ywali i wprowadzali
-nowe pomys³y. Zbyt wielu ich jest, aby dziêkowaæ ka¿demu z nich
-osobno, ale bez ich wsparcia SWIG nie by³by ani tak potê¿nym
-narzêdziem, ani tak fajnym w u¿yciu jak jest teraz. Wiekie dziêki!
+SWIG jest w caÅ‚oÅ›ci dzieÅ‚em ludzi, ktÃ³rzy go uÅ¼ywali i wprowadzali
+nowe pomysÅ‚y. Zbyt wielu ich jest, aby dziÄ™kowaÄ‡ kaÅ¼demu z nich
+osobno, ale bez ich wsparcia SWIG nie byÅ‚by ani tak potÄ™Å¼nym
+narzÄ™dziem, ani tak fajnym w uÅ¼yciu jak jest teraz. Wiekie dziÄ™ki!
 
-%description -l pt_BR
+%description -l pt_BR.UTF-8
 O SWIG gera interfaces para perl, python e Tcl a partir de uma arquivo
-com uma interface de descrição que consiste de uma combinação de C/C++
+com uma interface de descriÃ§Ã£o que consiste de uma combinaÃ§Ã£o de C/C++
 e diretivas especiais. Permite que linguagens tipo script usem C/C++
-com um mínimo de esforço.
+com um mÃ­nimo de esforÃ§o.
 
 %prep
 %setup -q -n SWIG-%{version}
