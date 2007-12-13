@@ -179,27 +179,6 @@ cp -a Examples/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post	-p /sbin/ldconfig
-%postun	-p /sbin/ldconfig
-
-%post	guile -p /sbin/ldconfig
-%postun	guile -p /sbin/ldconfig
-
-%post	perl -p /sbin/ldconfig
-%postun	perl -p /sbin/ldconfig
-
-%post	php -p /sbin/ldconfig
-%postun	php -p /sbin/ldconfig
-
-%post	python -p /sbin/ldconfig
-%postun	python -p /sbin/ldconfig
-
-%post	ruby -p /sbin/ldconfig
-%postun	ruby -p /sbin/ldconfig
-
-%post	tcl -p /sbin/ldconfig
-%postun	tcl -p /sbin/ldconfig
-
 %files
 %defattr(644,root,root,755)
 %doc Doc CHANGES CHANGES.current NEW README ANNOUNCE TODO LICENSE
