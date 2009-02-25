@@ -2,6 +2,7 @@
 # Conditional build:
 %bcond_without	guile	# disable guile support
 %bcond_without	ocaml	# disable ocaml support
+%bcond_without	octave	# disable octave support
 %bcond_without	perl	# disable perl support
 %bcond_without	php	# disable php support
 %bcond_without	ruby	# disable ruby support
@@ -11,15 +12,14 @@ Summary:	Interface generator for Perl, Tcl, Guile and Python
 Summary(pl.UTF-8):	Generator interfejsów do Perla, Tcl-a, Guile'a i Pythona
 Summary(pt_BR.UTF-8):	Gerador de Interfaces e "Wrappers" Simplificado (SWIG)
 Name:		swig
-Version:	1.3.36
+Version:	1.3.38
 Release:	1
 License:	distributable
 Group:		Development/Languages
 Source0:	http://dl.sourceforge.net/swig/%{name}-%{version}.tar.gz
-# Source0-md5:	8f30aa4130b62404099bbcba1bf429b1
+# Source0-md5:	650c774917be49c526a4f8a3e733c898
 Patch0:		%{name}-format.patch
 Patch1:		%{name}-php-freearg.patch
-Patch2:		%{name}-php-vdecl.patch
 URL:		http://www.swig.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -27,6 +27,7 @@ BuildRequires:	automake
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool
 %{?with_ocaml:BuildRequires:	ocaml}
+%{?with_octave:BuildRequires:	octave-devel}
 %{?with_perl:BuildRequires:	perl-devel >= 1:5.6.1}
 %{?with_php:BuildRequires:	php-cli}
 %{?with_php:BuildRequires:	php-devel >= 4.1.0}
@@ -152,7 +153,6 @@ Biblioteka SWIG: tcl.
 %setup -q
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
 
 %build
 %{__libtoolize}
@@ -184,7 +184,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/%{name}
 %{?with_guile:%exclude %{_datadir}/%{name}/%{version}/guile}
 %{?with_perl:%exclude %{_datadir}/%{name}/%{version}/perl5}
-%{?with_php:%exclude %{_datadir}/%{name}/%{version}/php4}
+%{?with_php:%exclude %{_datadir}/%{name}/%{version}/php}
 %exclude %{_datadir}/%{name}/%{version}/python
 %{?with_ruby:%exclude %{_datadir}/%{name}/%{version}/ruby}
 %{?with_tcl:%exclude %{_datadir}/%{name}/%{version}/tcl}
@@ -205,7 +205,7 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with php}
 %files php
 %defattr(644,root,root,755)
-%{_datadir}/%{name}/%{version}/php4
+%{_datadir}/%{name}/%{version}/php
 %endif
 
 %files python
