@@ -178,6 +178,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc Doc CHANGES CHANGES.current NEW README ANNOUNCE TODO LICENSE
+%attr(755,root,root) %{_bindir}/ccache-swig
 %attr(755,root,root) %{_bindir}/swig
 %{_datadir}/%{name}
 %{?with_guile:%exclude %{_datadir}/%{name}/%{version}/guile}
@@ -186,6 +187,7 @@ rm -rf $RPM_BUILD_ROOT
 %exclude %{_datadir}/%{name}/%{version}/python
 %{?with_ruby:%exclude %{_datadir}/%{name}/%{version}/ruby}
 %{?with_tcl:%exclude %{_datadir}/%{name}/%{version}/tcl}
+%{_mandir}/man1/ccache-swig.1*
 %{_examplesdir}/%{name}-%{version}
 
 %if %{with guile}
