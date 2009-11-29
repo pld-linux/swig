@@ -31,6 +31,8 @@ BuildRequires:	libtool
 %{?with_php:BuildRequires:	php-cli}
 %{?with_php:BuildRequires:	php-devel >= 4.1.0}
 BuildRequires:	python-devel >= 1:2.3.2
+BuildRequires:	python-modules
+BuildRequires:	rpm-pythonprov
 %if %{with ruby}
 BuildRequires:	rpmbuild(macros) >= 1.277
 BuildRequires:	ruby-devel >= 1:1.6.3
