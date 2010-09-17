@@ -24,7 +24,6 @@ BuildRequires:	autoconf >= 2.58
 BuildRequires:	automake >= 1:1.7.2
 %{?with_guile:BuildRequires:	guile-devel}
 BuildRequires:	libstdc++-devel
-BuildRequires:	libtool
 %{?with_ocaml:BuildRequires:	ocaml}
 %{?with_octave:BuildRequires:	octave-devel}
 %{?with_perl:BuildRequires:	perl-devel >= 1:5.6.1}
@@ -161,7 +160,6 @@ Biblioteka SWIG: tcl.
 %patch0 -p1
 
 %build
-%{__libtoolize}
 %{__aclocal} -I Tools/config
 %{__autoconf}
 %{__automake}
