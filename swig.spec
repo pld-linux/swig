@@ -12,17 +12,16 @@ Summary:	Interface generator for Perl, Tcl, Guile and Python
 Summary(pl.UTF-8):	Generator interfejsów do Perla, Tcl-a, Guile'a i Pythona
 Summary(pt_BR.UTF-8):	Gerador de Interfaces e "Wrappers" Simplificado (SWIG)
 Name:		swig
-Version:	1.3.40
-Release:	3
-License:	distributable
+Version:	2.0.0
+Release:	1
+License:	GPL v3+ (utility), free (library)
 Group:		Development/Languages
-Source0:	http://dl.sourceforge.net/swig/%{name}-%{version}.tar.gz
-# Source0-md5:	2df766c9e03e02811b1ab4bba1c7b9cc
+Source0:	http://downloads.sourceforge.net/swig/%{name}-%{version}.tar.gz
+# Source0-md5:	36ee2d9974be46a9f0a36460af928eb9
 Patch0:		%{name}-php-freearg.patch
-Patch1:		%{name}-ruby1.9.patch
 URL:		http://www.swig.org/
-BuildRequires:	autoconf
-BuildRequires:	automake
+BuildRequires:	autoconf >= 2.58
+BuildRequires:	automake >= 1:1.7.2
 %{?with_guile:BuildRequires:	guile-devel}
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool
@@ -81,6 +80,7 @@ com um mínimo de esforço.
 %package guile
 Summary:	SWIG library: guile
 Summary(pl.UTF-8):	Biblioteka SWIG: guile
+License:	free
 Group:		Libraries
 Requires:	%{name} = %{version}-%{release}
 
@@ -93,6 +93,7 @@ Biblioteka SWIG: guile.
 %package perl
 Summary:	SWIG library: Perl
 Summary(pl.UTF-8):	Biblioteka SWIG: Perl
+License:	free
 Group:		Libraries
 Requires:	%{name} = %{version}-%{release}
 
@@ -105,6 +106,7 @@ Biblioteka SWIG: perl.
 %package php
 Summary:	SWIG library: php
 Summary(pl.UTF-8):	Biblioteka SWIG: php
+License:	free
 Group:		Libraries
 Requires:	%{name} = %{version}-%{release}
 
@@ -117,6 +119,7 @@ Biblioteka SWIG: php.
 %package python
 Summary:	SWIG library: python
 Summary(pl.UTF-8):	Biblioteka SWIG: python
+License:	free
 Group:		Libraries
 Requires:	%{name} = %{version}-%{release}
 
@@ -129,6 +132,7 @@ Biblioteka SWIG: python.
 %package ruby
 Summary:	SWIG library: ruby
 Summary(pl.UTF-8):	Biblioteka SWIG: ruby
+License:	free
 Group:		Libraries
 Requires:	%{name} = %{version}-%{release}
 %{?ruby_mod_ver_requires_eq}
@@ -142,6 +146,7 @@ Biblioteka SWIG: ruby.
 %package tcl
 Summary:	SWIG library: tcl
 Summary(pl.UTF-8):	Biblioteka SWIG: tcl
+License:	free
 Group:		Libraries
 Requires:	%{name} = %{version}-%{release}
 
@@ -154,7 +159,6 @@ Biblioteka SWIG: tcl.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
 
 %build
 %{__libtoolize}
@@ -181,7 +185,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc Doc CHANGES CHANGES.current NEW README ANNOUNCE TODO LICENSE
+%doc ANNOUNCE CHANGES CHANGES.current COPYRIGHT LICENSE LICENSE-UNIVERSITIES README RELEASENOTES TODO Doc
 %attr(755,root,root) %{_bindir}/ccache-swig
 %attr(755,root,root) %{_bindir}/swig
 %{_datadir}/%{name}
