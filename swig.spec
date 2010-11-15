@@ -1,6 +1,3 @@
-# TODO:
-# - unify subpackage names. It should be <lang>-swig, not swig-<lang>
-#
 # Conditional build:
 %bcond_without	guile	# disable guile support
 %bcond_without	ocaml	# disable ocaml support
