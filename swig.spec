@@ -1,3 +1,4 @@
+#
 # Conditional build:
 %bcond_without	guile	# disable guile support
 %bcond_without	ocaml	# disable ocaml support
