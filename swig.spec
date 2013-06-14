@@ -22,15 +22,18 @@ Patch0:		%{name}-php-freearg.patch
 URL:		http://www.swig.org/
 BuildRequires:	autoconf >= 2.58
 BuildRequires:	automake >= 1:1.7.2
-%{?with_guile:BuildRequires:	guile-devel}
+%{?with_guile:BuildRequires:	guile-devel >= 5:1.8}
 BuildRequires:	libstdc++-devel
 %{?with_ocaml:BuildRequires:	ocaml}
 %{?with_octave:BuildRequires:	octave-devel}
+BuildRequires:	pcre-devel
 %{?with_perl:BuildRequires:	perl-devel >= 1:5.6.1}
 %{?with_php:BuildRequires:	php-cli}
 %{?with_php:BuildRequires:	php-devel >= 4.1.0}
 BuildRequires:	python-devel >= 1:2.3.2
 BuildRequires:	python-modules
+BuildRequires:	python3-devel
+BuildRequires:	python3-modules
 BuildRequires:	rpm-pythonprov
 %if %{with ruby}
 BuildRequires:	rpmbuild(macros) >= 1.277
@@ -186,13 +189,31 @@ rm -rf $RPM_BUILD_ROOT
 %doc ANNOUNCE CHANGES CHANGES.current COPYRIGHT LICENSE LICENSE-UNIVERSITIES README RELEASENOTES TODO Doc
 %attr(755,root,root) %{_bindir}/ccache-swig
 %attr(755,root,root) %{_bindir}/swig
-%{_datadir}/%{name}
-%{?with_guile:%exclude %{_datadir}/%{name}/%{version}/guile}
-%{?with_perl:%exclude %{_datadir}/%{name}/%{version}/perl5}
-%{?with_php:%exclude %{_datadir}/%{name}/%{version}/php}
-%exclude %{_datadir}/%{name}/%{version}/python
-%{?with_ruby:%exclude %{_datadir}/%{name}/%{version}/ruby}
-%{?with_tcl:%exclude %{_datadir}/%{name}/%{version}/tcl}
+%dir %{_datadir}/%{name}
+%dir %{_datadir}/%{name}/%{version}
+%{_datadir}/%{name}/%{version}/*.i
+%{_datadir}/%{name}/%{version}/allkw.swg
+%{_datadir}/%{name}/%{version}/runtime.swg
+%{_datadir}/%{name}/%{version}/swig*.swg
+%{_datadir}/%{name}/%{version}/allegrocl
+%{_datadir}/%{name}/%{version}/cffi
+%{_datadir}/%{name}/%{version}/chicken
+%{_datadir}/%{name}/%{version}/clisp
+%{_datadir}/%{name}/%{version}/csharp
+%{_datadir}/%{name}/%{version}/d
+%{_datadir}/%{name}/%{version}/gcj
+%{_datadir}/%{name}/%{version}/go
+%{_datadir}/%{name}/%{version}/java
+%{_datadir}/%{name}/%{version}/lua
+%{_datadir}/%{name}/%{version}/modula3
+%{_datadir}/%{name}/%{version}/mzscheme
+%{_datadir}/%{name}/%{version}/ocaml
+%{_datadir}/%{name}/%{version}/octave
+%{_datadir}/%{name}/%{version}/pike
+%{_datadir}/%{name}/%{version}/r
+%{_datadir}/%{name}/%{version}/std
+%{_datadir}/%{name}/%{version}/typemaps
+%{_datadir}/%{name}/%{version}/uffi
 %{_mandir}/man1/ccache-swig.1*
 %{_examplesdir}/%{name}-%{version}
 
