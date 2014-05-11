@@ -4,7 +4,7 @@
  
      /* Insert cleanup code */
      for (i = 0, p = l; p; i++) {
-+      if(i>= (num_required))
++      if((i >= num_required) && (i < num_required+numopt))
 +	Printf(cleanup,"\tif(arg_count > %d) {\n", i);
        if ((tm = Getattr(p, "tmap:freearg"))) {
  	Replaceall(tm, "$source", Getattr(p, "lname"));
@@ -13,7 +13,7 @@
        } else {
  	p = nextSibling(p);
        }
-+      if (i >= num_required)
++      if ((i >= num_required) && (i < num_required+numopt))
 +        Printf(cleanup,"}\n");
      }
  
