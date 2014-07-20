@@ -8,12 +8,16 @@
 %bcond_without	ruby	# disable ruby support
 %bcond_without	tcl	# disable tcl support
 #
+%if "%{?php_suffix}" == ""
+%define		php_suffix	55
+%endif
+%define		php_name	php%{?php_suffix}
 Summary:	Interface generator for Perl, Tcl, Guile and Python
 Summary(pl.UTF-8):	Generator interfejsów do Perla, Tcl-a, Guile'a i Pythona
 Summary(pt_BR.UTF-8):	Gerador de Interfaces e "Wrappers" Simplificado (SWIG)
 Name:		swig
 Version:	2.0.12
-Release:	2
+Release:	3
 License:	GPL v3+ (utility), free (library)
 Group:		Development/Languages
 Source0:	http://downloads.sourceforge.net/swig/%{name}-%{version}.tar.gz
@@ -28,8 +32,8 @@ BuildRequires:	libstdc++-devel
 %{?with_octave:BuildRequires:	octave-devel}
 BuildRequires:	pcre-devel
 %{?with_perl:BuildRequires:	perl-devel >= 1:5.6.1}
-%{?with_php:BuildRequires:	php-cli}
-%{?with_php:BuildRequires:	php-devel >= 4.1.0}
+%{?with_php:BuildRequires:	%{php_name}-cli}
+%{?with_php:BuildRequires:	%{php_name}-devel >= 4.1.0}
 BuildRequires:	python-devel >= 1:2.3.2
 BuildRequires:	python-modules
 BuildRequires:	python3-devel
