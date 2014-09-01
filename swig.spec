@@ -16,12 +16,12 @@ Summary:	Interface generator for Perl, Tcl, Guile and Python
 Summary(pl.UTF-8):	Generator interfejsów do Perla, Tcl-a, Guile'a i Pythona
 Summary(pt_BR.UTF-8):	Gerador de Interfaces e "Wrappers" Simplificado (SWIG)
 Name:		swig
-Version:	2.0.12
-Release:	3
+Version:	3.0.2
+Release:	1
 License:	GPL v3+ (utility), free (library)
 Group:		Development/Languages
 Source0:	http://downloads.sourceforge.net/swig/%{name}-%{version}.tar.gz
-# Source0-md5:	c3fb0b2d710cc82ed0154b91e43085a4
+# Source0-md5:	62f9b0d010cef36a13a010dc530d0d41
 Patch0:		%{name}-php-freearg.patch
 URL:		http://www.swig.org/
 BuildRequires:	autoconf >= 2.58
@@ -208,6 +208,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/%{name}/%{version}/gcj
 %{_datadir}/%{name}/%{version}/go
 %{_datadir}/%{name}/%{version}/java
+%dir %{_datadir}/%{name}/%{version}/javascript
+%{_datadir}/%{name}/%{version}/javascript/jsc
+%{_datadir}/%{name}/%{version}/javascript/v8
 %{_datadir}/%{name}/%{version}/lua
 %{_datadir}/%{name}/%{version}/modula3
 %{_datadir}/%{name}/%{version}/mzscheme
