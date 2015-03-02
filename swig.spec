@@ -2,7 +2,7 @@
 # Conditional build:
 %bcond_without	guile	# disable guile support
 %bcond_without	ocaml	# disable ocaml support
-%bcond_without	octave	# disable octave support
+%bcond_with	octave	# disable octave support
 %bcond_without	perl	# disable perl support
 %bcond_without	php	# disable php support
 %bcond_without	ruby	# disable ruby support
@@ -17,7 +17,7 @@ Summary(pl.UTF-8):	Generator interfejsów do Perla, Tcl-a, Guile'a i Pythona
 Summary(pt_BR.UTF-8):	Gerador de Interfaces e "Wrappers" Simplificado (SWIG)
 Name:		swig
 Version:	3.0.2
-Release:	2
+Release:	3
 License:	GPL v3+ (utility), free (library)
 Group:		Development/Languages
 Source0:	http://downloads.sourceforge.net/swig/%{name}-%{version}.tar.gz
