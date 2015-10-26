@@ -1,8 +1,6 @@
 #
 # Conditional build:
 %bcond_without	guile	# disable guile support
-%bcond_without	ocaml	# disable ocaml support
-%bcond_with	octave	# disable octave support
 %bcond_without	perl	# disable perl support
 %bcond_without	php	# disable php support
 %bcond_without	ruby	# disable ruby support
@@ -16,20 +14,22 @@ Summary:	Interface generator for Perl, Tcl, Guile and Python
 Summary(pl.UTF-8):	Generator interfejsów do Perla, Tcl-a, Guile'a i Pythona
 Summary(pt_BR.UTF-8):	Gerador de Interfaces e "Wrappers" Simplificado (SWIG)
 Name:		swig
-Version:	3.0.2
-Release:	3
+Version:	3.0.7
+Release:	1
 License:	GPL v3+ (utility), free (library)
 Group:		Development/Languages
 Source0:	http://downloads.sourceforge.net/swig/%{name}-%{version}.tar.gz
-# Source0-md5:	62f9b0d010cef36a13a010dc530d0d41
+# Source0-md5:	7fff46c84b8c630ede5b0f0827e3d90a
 Patch0:		%{name}-php-freearg.patch
 URL:		http://www.swig.org/
 BuildRequires:	autoconf >= 2.58
 BuildRequires:	automake >= 1:1.7.2
 %{?with_guile:BuildRequires:	guile-devel >= 5:1.8}
 BuildRequires:	libstdc++-devel
-%{?with_ocaml:BuildRequires:	ocaml}
-%{?with_octave:BuildRequires:	octave-devel}
+# used only in examples, doesn't affect actual swig build
+#BuildRequires:	ocaml
+# used only in examples, doesn't affect actual swig build
+#BuildRequires:	octave-devel
 BuildRequires:	pcre-devel
 %{?with_perl:BuildRequires:	perl-devel >= 1:5.6.1}
 %{?with_php:BuildRequires:	%{php_name}-cli}
@@ -197,6 +197,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_datadir}/%{name}/%{version}
 %{_datadir}/%{name}/%{version}/*.i
 %{_datadir}/%{name}/%{version}/allkw.swg
+%{_datadir}/%{name}/%{version}/director_common.swg
 %{_datadir}/%{name}/%{version}/runtime.swg
 %{_datadir}/%{name}/%{version}/swig*.swg
 %{_datadir}/%{name}/%{version}/allegrocl
@@ -218,6 +219,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/%{name}/%{version}/octave
 %{_datadir}/%{name}/%{version}/pike
 %{_datadir}/%{name}/%{version}/r
+%{_datadir}/%{name}/%{version}/scilab
 %{_datadir}/%{name}/%{version}/std
 %{_datadir}/%{name}/%{version}/typemaps
 %{_datadir}/%{name}/%{version}/uffi
