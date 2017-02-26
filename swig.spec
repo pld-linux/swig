@@ -14,12 +14,12 @@ Summary:	Interface generator for Perl, Tcl, Guile and Python
 Summary(pl.UTF-8):	Generator interfejsów do Perla, Tcl-a, Guile'a i Pythona
 Summary(pt_BR.UTF-8):	Gerador de Interfaces e "Wrappers" Simplificado (SWIG)
 Name:		swig
-Version:	3.0.10
+Version:	3.0.12
 Release:	1
 License:	GPL v3+ (utility), free (library)
 Group:		Development/Languages
 Source0:	http://downloads.sourceforge.net/swig/%{name}-%{version}.tar.gz
-# Source0-md5:	bb4ab8047159469add7d00910e203124
+# Source0-md5:	82133dfa7bba75ff9ad98a7046be687c
 Patch0:		%{name}-php-freearg.patch
 URL:		http://www.swig.org/
 BuildRequires:	autoconf >= 2.58
@@ -84,83 +84,83 @@ e diretivas especiais. Permite que linguagens tipo script usem C/C++
 com um mínimo de esforço.
 
 %package guile
-Summary:	SWIG library: guile
-Summary(pl.UTF-8):	Biblioteka SWIG: guile
+Summary:	SWIG module to generate Guile bindings
+Summary(pl.UTF-8):	Moduł SWIG do generowania wiązań Guile
 License:	free
 Group:		Libraries
 Requires:	%{name} = %{version}-%{release}
 
 %description guile
-SWIG library: guile.
+SWIG module to generate Guile bindings.
 
 %description guile -l pl.UTF-8
-Biblioteka SWIG: guile.
+Moduł SWIG do generowania wiązań Guile.
 
 %package perl
-Summary:	SWIG library: Perl
-Summary(pl.UTF-8):	Biblioteka SWIG: Perl
+Summary:	SWIG module to generate Perl bindings
+Summary(pl.UTF-8):	Moduł SWIG do generowania wiązań Perla
 License:	free
 Group:		Libraries
 Requires:	%{name} = %{version}-%{release}
 
 %description perl
-SWIG library: perl.
+SWIG module to generate Perl bindings. It supports Perl 5.
 
 %description perl -l pl.UTF-8
-Biblioteka SWIG: perl.
+Moduł SWIG do generowania wiązań Perla. Obsługuje Perla 5.
 
 %package php
-Summary:	SWIG library: php
-Summary(pl.UTF-8):	Biblioteka SWIG: php
+Summary:	SWIG module to generate PHP bindings
+Summary(pl.UTF-8):	Moduł SWIG do generowania wiązań PHP
 License:	free
 Group:		Libraries
 Requires:	%{name} = %{version}-%{release}
 
 %description php
-SWIG library: php.
+SWIG module to generate PHP bindings. It supports PHP 5 and 7.
 
 %description php -l pl.UTF-8
-Biblioteka SWIG: php.
+Moduł SWIG do generowania wiązań PHP. Obsługuje PHP 5 i 7.
 
 %package python
-Summary:	SWIG library: python
-Summary(pl.UTF-8):	Biblioteka SWIG: python
+Summary:	SWIG module to generate Python bindings
+Summary(pl.UTF-8):	Moduł SWIG do generowania wiązań Pythona
 License:	free
 Group:		Libraries
 Requires:	%{name} = %{version}-%{release}
 
 %description python
-SWIG library: python.
+SWIG module to generate Python bindings. It supports Python 2 and 3.
 
 %description python -l pl.UTF-8
-Biblioteka SWIG: python.
+Moduł SWIG do generowania wiązań Pythona. Obsługuje Pythona 2 i 3.
 
 %package ruby
-Summary:	SWIG library: ruby
-Summary(pl.UTF-8):	Biblioteka SWIG: ruby
+Summary:	SWIG module to generate Ruby bindings
+Summary(pl.UTF-8):	Moduł SWIG do generowania wiązań języka Ruby
 License:	free
 Group:		Libraries
 Requires:	%{name} = %{version}-%{release}
 %{?ruby_mod_ver_requires_eq}
 
 %description ruby
-SWIG library: ruby.
+SWIG module to generate Ruby bindings.
 
 %description ruby -l pl.UTF-8
-Biblioteka SWIG: ruby.
+Moduł SWIG do generowania wiązań języka Ruby.
 
 %package tcl
-Summary:	SWIG library: tcl
-Summary(pl.UTF-8):	Biblioteka SWIG: tcl
+Summary:	SWIG module to generate Tcl bindings
+Summary(pl.UTF-8):	Moduł SWIG do generowania wiązań języka Tcl
 License:	free
 Group:		Libraries
 Requires:	%{name} = %{version}-%{release}
 
 %description tcl
-SWIG library: tcl.
+SWIG module to generate Tcl bindings.
 
 %description tcl -l pl.UTF-8
-Biblioteka SWIG: tcl.
+Moduł SWIG do generowania wiązań języka Tcl.
 
 %prep
 %setup -q
@@ -241,6 +241,7 @@ rm -rf $RPM_BUILD_ROOT
 %files php
 %defattr(644,root,root,755)
 %{_datadir}/%{name}/%{version}/php
+%{_datadir}/%{name}/%{version}/php5
 %endif
 
 %files python
