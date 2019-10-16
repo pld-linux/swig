@@ -7,19 +7,19 @@
 %bcond_without	tcl	# disable tcl support
 #
 %if "%{?php_suffix}" == ""
-%define		php_suffix	55
+%define		php_suffix	73
 %endif
 %define		php_name	php%{?php_suffix}
 Summary:	Interface generator for Perl, Tcl, Guile and Python
 Summary(pl.UTF-8):	Generator interfejsów do Perla, Tcl-a, Guile'a i Pythona
 Summary(pt_BR.UTF-8):	Gerador de Interfaces e "Wrappers" Simplificado (SWIG)
 Name:		swig
-Version:	3.0.12
+Version:	4.0.1
 Release:	1
 License:	GPL v3+ (utility), free (library)
 Group:		Development/Languages
 Source0:	http://downloads.sourceforge.net/swig/%{name}-%{version}.tar.gz
-# Source0-md5:	82133dfa7bba75ff9ad98a7046be687c
+# Source0-md5:	54cc40b3804816f7d38ab510b6f13b04
 Patch0:		%{name}-php-freearg.patch
 URL:		http://www.swig.org/
 BuildRequires:	autoconf >= 2.58
@@ -117,10 +117,10 @@ Group:		Libraries
 Requires:	%{name} = %{version}-%{release}
 
 %description php
-SWIG module to generate PHP bindings. It supports PHP 5 and 7.
+SWIG module to generate PHP bindings. It supports PHP 7.
 
 %description php -l pl.UTF-8
-Moduł SWIG do generowania wiązań PHP. Obsługuje PHP 5 i 7.
+Moduł SWIG do generowania wiązań PHP. Obsługuje PHP 7.
 
 %package python
 Summary:	SWIG module to generate Python bindings
@@ -130,10 +130,12 @@ Group:		Libraries
 Requires:	%{name} = %{version}-%{release}
 
 %description python
-SWIG module to generate Python bindings. It supports Python 2 and 3.
+SWIG module to generate Python bindings. It supports Python 2.7 and
+3.2+
 
 %description python -l pl.UTF-8
-Moduł SWIG do generowania wiązań Pythona. Obsługuje Pythona 2 i 3.
+Moduł SWIG do generowania wiązań Pythona. Obsługuje Pythona 2.7 i
+3.2+.
 
 %package ruby
 Summary:	SWIG module to generate Ruby bindings
@@ -200,29 +202,22 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/%{name}/%{version}/director_common.swg
 %{_datadir}/%{name}/%{version}/runtime.swg
 %{_datadir}/%{name}/%{version}/swig*.swg
-%{_datadir}/%{name}/%{version}/allegrocl
-%{_datadir}/%{name}/%{version}/cffi
-%{_datadir}/%{name}/%{version}/chicken
-%{_datadir}/%{name}/%{version}/clisp
 %{_datadir}/%{name}/%{version}/csharp
 %{_datadir}/%{name}/%{version}/d
-%{_datadir}/%{name}/%{version}/gcj
 %{_datadir}/%{name}/%{version}/go
 %{_datadir}/%{name}/%{version}/java
 %dir %{_datadir}/%{name}/%{version}/javascript
 %{_datadir}/%{name}/%{version}/javascript/jsc
 %{_datadir}/%{name}/%{version}/javascript/v8
 %{_datadir}/%{name}/%{version}/lua
-%{_datadir}/%{name}/%{version}/modula3
 %{_datadir}/%{name}/%{version}/mzscheme
 %{_datadir}/%{name}/%{version}/ocaml
 %{_datadir}/%{name}/%{version}/octave
-%{_datadir}/%{name}/%{version}/pike
 %{_datadir}/%{name}/%{version}/r
 %{_datadir}/%{name}/%{version}/scilab
 %{_datadir}/%{name}/%{version}/std
 %{_datadir}/%{name}/%{version}/typemaps
-%{_datadir}/%{name}/%{version}/uffi
+%{_datadir}/%{name}/%{version}/xml
 %{_examplesdir}/%{name}-%{version}
 
 %if %{with guile}
@@ -241,7 +236,6 @@ rm -rf $RPM_BUILD_ROOT
 %files php
 %defattr(644,root,root,755)
 %{_datadir}/%{name}/%{version}/php
-%{_datadir}/%{name}/%{version}/php5
 %endif
 
 %files python
