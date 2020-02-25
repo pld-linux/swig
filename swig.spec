@@ -13,14 +13,14 @@
 Summary:	Interface generator for Perl, Tcl, Guile and Python
 Summary(pl.UTF-8):	Generator interfejsów do Perla, Tcl-a, Guile'a i Pythona
 Summary(pt_BR.UTF-8):	Gerador de Interfaces e "Wrappers" Simplificado (SWIG)
-Name:		swig
+Name:		swig3
 Version:	3.0.12
 Release:	1
 License:	GPL v3+ (utility), free (library)
 Group:		Development/Languages
-Source0:	http://downloads.sourceforge.net/swig/%{name}-%{version}.tar.gz
+Source0:	http://downloads.sourceforge.net/swig/swig-%{version}.tar.gz
 # Source0-md5:	82133dfa7bba75ff9ad98a7046be687c
-Patch0:		%{name}-php-freearg.patch
+Patch0:		swig-php-freearg.patch
 URL:		http://www.swig.org/
 BuildRequires:	autoconf >= 2.58
 BuildRequires:	automake >= 1:1.7.2
@@ -163,14 +163,15 @@ SWIG module to generate Tcl bindings.
 Moduł SWIG do generowania wiązań języka Tcl.
 
 %prep
-%setup -q
+%setup -q -n swig-%{version}
 %patch0 -p1
 
 %build
 %{__aclocal} -I Tools/config
 %{__autoconf}
 %{__automake}
-%configure
+%configure \
+	--program-suffix="-3"
 
 %{__make} \
 	OPT="%{rpmcflags}"
@@ -191,71 +192,71 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc ANNOUNCE CHANGES CHANGES.current COPYRIGHT LICENSE LICENSE-UNIVERSITIES README RELEASENOTES TODO Doc
-%attr(755,root,root) %{_bindir}/ccache-swig
-%attr(755,root,root) %{_bindir}/swig
-%dir %{_datadir}/%{name}
-%dir %{_datadir}/%{name}/%{version}
-%{_datadir}/%{name}/%{version}/*.i
-%{_datadir}/%{name}/%{version}/allkw.swg
-%{_datadir}/%{name}/%{version}/director_common.swg
-%{_datadir}/%{name}/%{version}/runtime.swg
-%{_datadir}/%{name}/%{version}/swig*.swg
-%{_datadir}/%{name}/%{version}/allegrocl
-%{_datadir}/%{name}/%{version}/cffi
-%{_datadir}/%{name}/%{version}/chicken
-%{_datadir}/%{name}/%{version}/clisp
-%{_datadir}/%{name}/%{version}/csharp
-%{_datadir}/%{name}/%{version}/d
-%{_datadir}/%{name}/%{version}/gcj
-%{_datadir}/%{name}/%{version}/go
-%{_datadir}/%{name}/%{version}/java
-%dir %{_datadir}/%{name}/%{version}/javascript
-%{_datadir}/%{name}/%{version}/javascript/jsc
-%{_datadir}/%{name}/%{version}/javascript/v8
-%{_datadir}/%{name}/%{version}/lua
-%{_datadir}/%{name}/%{version}/modula3
-%{_datadir}/%{name}/%{version}/mzscheme
-%{_datadir}/%{name}/%{version}/ocaml
-%{_datadir}/%{name}/%{version}/octave
-%{_datadir}/%{name}/%{version}/pike
-%{_datadir}/%{name}/%{version}/r
-%{_datadir}/%{name}/%{version}/scilab
-%{_datadir}/%{name}/%{version}/std
-%{_datadir}/%{name}/%{version}/typemaps
-%{_datadir}/%{name}/%{version}/uffi
+%attr(755,root,root) %{_bindir}/ccache-swig-3
+%attr(755,root,root) %{_bindir}/swig-3
+%dir %{_datadir}/swig
+%dir %{_datadir}/swig/%{version}
+%{_datadir}/swig/%{version}/*.i
+%{_datadir}/swig/%{version}/allkw.swg
+%{_datadir}/swig/%{version}/director_common.swg
+%{_datadir}/swig/%{version}/runtime.swg
+%{_datadir}/swig/%{version}/swig*.swg
+%{_datadir}/swig/%{version}/allegrocl
+%{_datadir}/swig/%{version}/cffi
+%{_datadir}/swig/%{version}/chicken
+%{_datadir}/swig/%{version}/clisp
+%{_datadir}/swig/%{version}/csharp
+%{_datadir}/swig/%{version}/d
+%{_datadir}/swig/%{version}/gcj
+%{_datadir}/swig/%{version}/go
+%{_datadir}/swig/%{version}/java
+%dir %{_datadir}/swig/%{version}/javascript
+%{_datadir}/swig/%{version}/javascript/jsc
+%{_datadir}/swig/%{version}/javascript/v8
+%{_datadir}/swig/%{version}/lua
+%{_datadir}/swig/%{version}/modula3
+%{_datadir}/swig/%{version}/mzscheme
+%{_datadir}/swig/%{version}/ocaml
+%{_datadir}/swig/%{version}/octave
+%{_datadir}/swig/%{version}/pike
+%{_datadir}/swig/%{version}/r
+%{_datadir}/swig/%{version}/scilab
+%{_datadir}/swig/%{version}/std
+%{_datadir}/swig/%{version}/typemaps
+%{_datadir}/swig/%{version}/uffi
 %{_examplesdir}/%{name}-%{version}
 
 %if %{with guile}
 %files guile
 %defattr(644,root,root,755)
-%{_datadir}/%{name}/%{version}/guile
+%{_datadir}/swig/%{version}/guile
 %endif
 
 %if %{with perl}
 %files perl
 %defattr(644,root,root,755)
-%{_datadir}/%{name}/%{version}/perl5
+%{_datadir}/swig/%{version}/perl5
 %endif
 
 %if %{with php}
 %files php
 %defattr(644,root,root,755)
-%{_datadir}/%{name}/%{version}/php
-%{_datadir}/%{name}/%{version}/php5
+%{_datadir}/swig/%{version}/php
+%{_datadir}/swig/%{version}/php5
 %endif
 
 %files python
 %defattr(644,root,root,755)
-%{_datadir}/%{name}/%{version}/python
+%{_datadir}/swig/%{version}/python
 
 %if %{with ruby}
 %files ruby
 %defattr(644,root,root,755)
-%{_datadir}/%{name}/%{version}/ruby
+%{_datadir}/swig/%{version}/ruby
 %endif
 
 %if %{with tcl}
 %files tcl
 %defattr(644,root,root,755)
-%{_datadir}/%{name}/%{version}/tcl
+%{_datadir}/swig/%{version}/tcl
 %endif
