@@ -44,7 +44,7 @@ BuildRequires:	rpmbuild(macros) >= 1.277
 BuildRequires:	ruby-devel >= 1:1.6.3
 %endif
 %{?with_tcl:BuildRequires:	tcl-devel >= 8.3.3}
-Obsoletes:	swig-ocaml
+Obsoletes:	swig-ocaml < 3.0.7
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
