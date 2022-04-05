@@ -3,6 +3,8 @@
 %bcond_without	guile	# disable guile support
 %bcond_without	perl	# disable perl support
 %bcond_without	php	# disable php support
+%bcond_without	python2	# disable python 2.x support
+%bcond_without	python3	# disable python 3.x support
 %bcond_without	ruby	# disable ruby support
 %bcond_without	tcl	# disable tcl support
 #
@@ -15,7 +17,7 @@ Summary(pl.UTF-8):	Generator interfejsów do Perla, Tcl-a, Guile'a i Pythona
 Summary(pt_BR.UTF-8):	Gerador de Interfaces e "Wrappers" Simplificado (SWIG)
 Name:		swig
 Version:	4.0.2
-Release:	1
+Release:	2
 License:	GPL v3+ (utility), free (library)
 Group:		Development/Languages
 Source0:	https://downloads.sourceforge.net/swig/%{name}-%{version}.tar.gz
@@ -34,10 +36,14 @@ BuildRequires:	pcre-devel
 %{?with_perl:BuildRequires:	perl-devel >= 1:5.6.1}
 %{?with_php:BuildRequires:	%{php_name}-cli}
 %{?with_php:BuildRequires:	%{php_name}-devel >= 4.1.0}
+%if %{with python2}
 BuildRequires:	python-devel >= 1:2.3.2
 BuildRequires:	python-modules
+%endif
+%if %{with python2}
 BuildRequires:	python3-devel
 BuildRequires:	python3-modules
+%endif
 BuildRequires:	rpm-pythonprov
 %if %{with ruby}
 BuildRequires:	rpmbuild(macros) >= 1.277
@@ -172,7 +178,9 @@ Moduł SWIG do generowania wiązań języka Tcl.
 %{__aclocal} -I Tools/config
 %{__autoconf}
 %{__automake}
-%configure
+%configure \
+	%{!?with_python2:--without-python} \
+	%{!?with_python3:--without-python3}
 
 %{__make} \
 	OPT="%{rpmcflags}"
@@ -238,9 +246,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/%{name}/%{version}/php
 %endif
 
+%if %{with python2} || %{with python3}
 %files python
 %defattr(644,root,root,755)
 %{_datadir}/%{name}/%{version}/python
+%endif
 
 %if %{with ruby}
 %files ruby
