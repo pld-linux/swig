@@ -1,15 +1,14 @@
---- swig-1.3.30/Source/Modules/php.cxx.orig	2006-11-02 00:54:52.000000000 +0100
-+++ swig-1.3.30/Source/Modules/php.cxx	2006-11-18 20:49:44.639530500 +0100
-@@ -1172,6 +1172,8 @@
+--- swig-4.1.1/Source/Modules/php.cxx.orig	2022-11-30 08:35:05.000000000 +0100
++++ swig-4.1.1/Source/Modules/php.cxx	2023-01-18 20:06:15.851111372 +0100
+@@ -1532,12 +1532,16 @@ public:
  
      /* Insert cleanup code */
      for (i = 0, p = l; p; i++) {
 +      if((i >= num_required) && (i < num_required+numopt))
 +	Printf(cleanup,"\tif(arg_count > %d) {\n", i);
        if ((tm = Getattr(p, "tmap:freearg"))) {
- 	Replaceall(tm, "$source", Getattr(p, "lname"));
  	Printv(cleanup, tm, "\n", NIL);
-@@ -1179,6 +1181,8 @@
+ 	p = Getattr(p, "tmap:freearg:next");
        } else {
  	p = nextSibling(p);
        }

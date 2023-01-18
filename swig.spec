@@ -16,14 +16,14 @@ Summary:	Interface generator for Perl, Tcl, Guile and Python
 Summary(pl.UTF-8):	Generator interfejsów do Perla, Tcl-a, Guile'a i Pythona
 Summary(pt_BR.UTF-8):	Gerador de Interfaces e "Wrappers" Simplificado (SWIG)
 Name:		swig
-Version:	4.0.2
-Release:	2
+Version:	4.1.1
+Release:	1
 License:	GPL v3+ (utility), free (library)
 Group:		Development/Languages
 Source0:	https://downloads.sourceforge.net/swig/%{name}-%{version}.tar.gz
-# Source0-md5:	7c3e46cb5af2b469722cafa0d91e127b
+# Source0-md5:	c7d55a1bca26752f3846c85b43c1a69c
 Patch0:		%{name}-php-freearg.patch
-URL:		http://www.swig.org/
+URL:		https://swig.org/
 BuildRequires:	autoconf >= 2.58
 BuildRequires:	automake >= 1:1.7.2
 %{?with_guile:BuildRequires:	guile-devel >= 5:1.8}
@@ -32,8 +32,8 @@ BuildRequires:	libstdc++-devel
 #BuildRequires:	ocaml
 # used only in examples, doesn't affect actual swig build
 #BuildRequires:	octave-devel
-BuildRequires:	pcre-devel
-%{?with_perl:BuildRequires:	perl-devel >= 1:5.6.1}
+BuildRequires:	pcre2-8-devel
+%{?with_perl:BuildRequires:	perl-devel >= 1:5.8.0}
 %{?with_php:BuildRequires:	%{php_name}-cli}
 %{?with_php:BuildRequires:	%{php_name}-devel >= 4.1.0}
 %if %{with python2}
@@ -137,11 +137,11 @@ Requires:	%{name} = %{version}-%{release}
 
 %description python
 SWIG module to generate Python bindings. It supports Python 2.7 and
-3.2+
+3.3+
 
 %description python -l pl.UTF-8
 Moduł SWIG do generowania wiązań Pythona. Obsługuje Pythona 2.7 i
-3.2+.
+3.3+.
 
 %package ruby
 Summary:	SWIG module to generate Ruby bindings
