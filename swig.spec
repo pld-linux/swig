@@ -16,12 +16,12 @@ Summary:	Interface generator for Perl, Tcl, Guile and Python
 Summary(pl.UTF-8):	Generator interfejsów do Perla, Tcl-a, Guile'a i Pythona
 Summary(pt_BR.UTF-8):	Gerador de Interfaces e "Wrappers" Simplificado (SWIG)
 Name:		swig
-Version:	4.1.1
+Version:	4.2.1
 Release:	1
 License:	GPL v3+ (utility), free (library)
 Group:		Development/Languages
 Source0:	https://downloads.sourceforge.net/swig/%{name}-%{version}.tar.gz
-# Source0-md5:	c7d55a1bca26752f3846c85b43c1a69c
+# Source0-md5:	7697b443d7845381d64c90ab54d244af
 Patch0:		%{name}-php-freearg.patch
 URL:		https://swig.org/
 BuildRequires:	autoconf >= 2.58
@@ -34,8 +34,8 @@ BuildRequires:	libstdc++-devel
 #BuildRequires:	octave-devel
 BuildRequires:	pcre2-8-devel
 %{?with_perl:BuildRequires:	perl-devel >= 1:5.8.0}
-%{?with_php:BuildRequires:	%{php_name}-cli}
-%{?with_php:BuildRequires:	%{php_name}-devel >= 4.1.0}
+%{?with_php:BuildRequires:	%{php_name}-cli >= 8}
+%{?with_php:BuildRequires:	%{php_name}-devel >= 8}
 %if %{with python2}
 BuildRequires:	python-devel >= 1:2.3.2
 BuildRequires:	python-modules
@@ -123,10 +123,10 @@ Group:		Libraries
 Requires:	%{name} = %{version}-%{release}
 
 %description php
-SWIG module to generate PHP bindings. It supports PHP 7.
+SWIG module to generate PHP bindings. It supports PHP 8.
 
 %description php -l pl.UTF-8
-Moduł SWIG do generowania wiązań PHP. Obsługuje PHP 7.
+Moduł SWIG do generowania wiązań PHP. Obsługuje PHP 8.
 
 %package python
 Summary:	SWIG module to generate Python bindings
@@ -216,7 +216,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/%{name}/%{version}/java
 %dir %{_datadir}/%{name}/%{version}/javascript
 %{_datadir}/%{name}/%{version}/javascript/jsc
+%{_datadir}/%{name}/%{version}/javascript/napi
 %{_datadir}/%{name}/%{version}/javascript/v8
+%{_datadir}/%{name}/%{version}/javascriptkw.swg
 %{_datadir}/%{name}/%{version}/lua
 %{_datadir}/%{name}/%{version}/mzscheme
 %{_datadir}/%{name}/%{version}/ocaml
