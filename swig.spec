@@ -172,7 +172,7 @@ Moduł SWIG do generowania wiązań języka Tcl.
 
 %prep
 %setup -q
-%patch0 -p1
+%patch -P0 -p1
 
 %build
 %{__aclocal} -I Tools/config
