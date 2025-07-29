@@ -196,6 +196,8 @@ install -d $RPM_BUILD_ROOT{%{_mandir}/man1,%{_examplesdir}/%{name}-%{version}}
 
 cp -a Examples/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
+%{!?with_php:%{__rm} -r $RPM_BUILD_ROOT%{_datadir}/%{name}/%{version}/php}
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
