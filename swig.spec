@@ -9,7 +9,7 @@
 %bcond_without	tcl	# disable tcl support
 #
 %if "%{?php_suffix}" == ""
-%define		php_suffix	73
+%define		php_suffix	83
 %endif
 %define		php_name	php%{?php_suffix}
 Summary:	Interface generator for Perl, Tcl, Guile and Python
