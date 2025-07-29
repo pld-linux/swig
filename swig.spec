@@ -179,6 +179,7 @@ Moduł SWIG do generowania wiązań języka Tcl.
 %{__autoconf}
 %{__automake}
 %configure \
+	%{!?with_php:--without-php} \
 	%{!?with_python2:--without-python} \
 	%{!?with_python3:--without-python3}
 
