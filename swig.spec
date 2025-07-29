@@ -16,12 +16,12 @@ Summary:	Interface generator for Perl, Tcl, Guile and Python
 Summary(pl.UTF-8):	Generator interfejsów do Perla, Tcl-a, Guile'a i Pythona
 Summary(pt_BR.UTF-8):	Gerador de Interfaces e "Wrappers" Simplificado (SWIG)
 Name:		swig
-Version:	4.2.1
+Version:	4.3.1
 Release:	1
 License:	GPL v3+ (utility), free (library)
 Group:		Development/Languages
 Source0:	https://downloads.sourceforge.net/swig/%{name}-%{version}.tar.gz
-# Source0-md5:	7697b443d7845381d64c90ab54d244af
+# Source0-md5:	4929864e1b040a51370160d17669d6f1
 Patch0:		%{name}-php-freearg.patch
 URL:		https://swig.org/
 BuildRequires:	autoconf >= 2.58
@@ -208,17 +208,20 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/%{name}/%{version}/*.i
 %{_datadir}/%{name}/%{version}/allkw.swg
 %{_datadir}/%{name}/%{version}/director_common.swg
+%{_datadir}/%{name}/%{version}/director_guard.swg
 %{_datadir}/%{name}/%{version}/runtime.swg
 %{_datadir}/%{name}/%{version}/swig*.swg
+%{_datadir}/%{name}/%{version}/unique_ptr.swg
+%{_datadir}/%{name}/%{version}/c
 %{_datadir}/%{name}/%{version}/csharp
 %{_datadir}/%{name}/%{version}/d
 %{_datadir}/%{name}/%{version}/go
 %{_datadir}/%{name}/%{version}/java
 %dir %{_datadir}/%{name}/%{version}/javascript
+%{_datadir}/%{name}/%{version}/javascript/javascriptkw.swg
 %{_datadir}/%{name}/%{version}/javascript/jsc
 %{_datadir}/%{name}/%{version}/javascript/napi
 %{_datadir}/%{name}/%{version}/javascript/v8
-%{_datadir}/%{name}/%{version}/javascriptkw.swg
 %{_datadir}/%{name}/%{version}/lua
 %{_datadir}/%{name}/%{version}/mzscheme
 %{_datadir}/%{name}/%{version}/ocaml
