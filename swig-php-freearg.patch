@@ -5,12 +5,12 @@
      /* Insert cleanup code */
      for (i = 0, p = l; p; i++) {
 +      if((i >= num_required) && (i < num_required+numopt))
-+	Printf(cleanup,"\tif(arg_count > %d) {\n", i);
++        Printf(cleanup,"\tif(arg_count > %d) {\n", i);
        if ((tm = Getattr(p, "tmap:freearg"))) {
- 	Printv(cleanup, tm, "\n", NIL);
- 	p = Getattr(p, "tmap:freearg:next");
+         Printv(cleanup, tm, "\n", NIL);
+         p = Getattr(p, "tmap:freearg:next");
        } else {
- 	p = nextSibling(p);
+         p = nextSibling(p);
        }
 +      if ((i >= num_required) && (i < num_required+numopt))
 +        Printf(cleanup,"}\n");

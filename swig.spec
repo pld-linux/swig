@@ -3,7 +3,6 @@
 %bcond_without	guile	# disable guile support
 %bcond_without	perl	# disable perl support
 %bcond_without	php	# disable php support
-%bcond_without	python2	# disable python 2.x support
 %bcond_without	python3	# disable python 3.x support
 %bcond_without	ruby	# disable ruby support
 %bcond_without	tcl	# disable tcl support
@@ -16,15 +15,15 @@ Summary:	Interface generator for Perl, Tcl, Guile and Python
 Summary(pl.UTF-8):	Generator interfejsów do Perla, Tcl-a, Guile'a i Pythona
 Summary(pt_BR.UTF-8):	Gerador de Interfaces e "Wrappers" Simplificado (SWIG)
 Name:		swig
-Version:	4.3.1
+Version:	4.5.1
 Release:	1
 License:	GPL v3+ (utility), free (library)
 Group:		Development/Languages
 Source0:	https://downloads.sourceforge.net/swig/%{name}-%{version}.tar.gz
-# Source0-md5:	4929864e1b040a51370160d17669d6f1
+# Source0-md5:	ab1a64cd634c5a21115c862e987c4094
 Patch0:		%{name}-php-freearg.patch
 URL:		https://swig.org/
-BuildRequires:	autoconf >= 2.58
+BuildRequires:	autoconf >= 2.64
 BuildRequires:	automake >= 1:1.7.2
 %{?with_guile:BuildRequires:	guile-devel >= 5:1.8}
 BuildRequires:	libstdc++-devel
@@ -36,13 +35,9 @@ BuildRequires:	pcre2-8-devel
 %{?with_perl:BuildRequires:	perl-devel >= 1:5.8.0}
 %{?with_php:BuildRequires:	%{php_name}-cli >= 8}
 %{?with_php:BuildRequires:	%{php_name}-devel >= 8}
-%if %{with python2}
-BuildRequires:	python-devel >= 1:2.3.2
-BuildRequires:	python-modules
-%endif
-%if %{with python2}
-BuildRequires:	python3-devel
-BuildRequires:	python3-modules
+%if %{with python3}
+BuildRequires:	python3-devel >= 1:3.5
+BuildRequires:	python3-modules >= 1:3.5
 %endif
 BuildRequires:	rpm-pythonprov
 %if %{with ruby}
@@ -180,7 +175,6 @@ Moduł SWIG do generowania wiązań języka Tcl.
 %{__automake}
 %configure \
 	--with-php=%{?with_php:/usr/bin/php}%{!?with_php:no} \
-	%{!?with_python2:--without-python} \
 	%{!?with_python3:--without-python3}
 
 %{__make} \
@@ -221,12 +215,12 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/%{name}/%{version}/go
 %{_datadir}/%{name}/%{version}/java
 %dir %{_datadir}/%{name}/%{version}/javascript
+%{_datadir}/%{name}/%{version}/javascript/cdata.i
 %{_datadir}/%{name}/%{version}/javascript/javascriptkw.swg
 %{_datadir}/%{name}/%{version}/javascript/jsc
 %{_datadir}/%{name}/%{version}/javascript/napi
 %{_datadir}/%{name}/%{version}/javascript/v8
 %{_datadir}/%{name}/%{version}/lua
-%{_datadir}/%{name}/%{version}/mzscheme
 %{_datadir}/%{name}/%{version}/ocaml
 %{_datadir}/%{name}/%{version}/octave
 %{_datadir}/%{name}/%{version}/r
@@ -254,7 +248,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/%{name}/%{version}/php
 %endif
 
-%if %{with python2} || %{with python3}
+%if %{with python3}
 %files python
 %defattr(644,root,root,755)
 %{_datadir}/%{name}/%{version}/python
